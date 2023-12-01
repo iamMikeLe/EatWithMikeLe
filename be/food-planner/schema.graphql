@@ -8,10 +8,10 @@ type Query {
 }
 
 type User {
-  userId: String,
+  userId: String!,
   firstName: String,
   lastName: String,
-  email: String,
+  email: String!,
   password: String,
   avatar: String,
   favorites: [String],
@@ -19,25 +19,25 @@ type User {
 }
 
 type Meal {
-  mealId: String,
+  mealId: String!,
   name: String,
   description: String,
   tags: [String],
-  author: String,
-  authorId: String,
+  author: String!,
+  authorId: String!,
 }
 
 type Place {
-  placeId: String,
-  name: String,
+  placeId: String!,
+  name: String!,
   description: String,
   tags: [String],
-  author: String,
-  authorId: String,
-  coords: Coords,
+  author: String!,
+  authorId: String!,
+  coords: Coords!,
 }
 
 type Coords {
-  longitude: String,
-  latitude: String
+  longitude: String!,
+  latitude: String!
 }
