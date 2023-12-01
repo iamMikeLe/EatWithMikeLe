@@ -1,10 +1,10 @@
 type Query {
   user: User,
-  users: [User],
+  users: [User!],
   meal: Meal
-  meals: [Meal],
+  meals: [Meal!],
   place: Place,
-  places: [Place]
+  places: [Place!]
 }
 
 type User {
