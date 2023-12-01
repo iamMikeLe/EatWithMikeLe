@@ -1,28 +1,20 @@
-const dummyUser = {
-  userId: "123131",
-  firstName: "John",
-  lastName: "Doe",
-  email: "john@email.com",
-  password: "password",
-  avatar: "http://www.somelink.com/images/",
-  favorites: [],
-  learned: [],
-};
-
-const dummyMeal = {
-  mealId: "123441",
-  name: "spaghetti",
-  description: "spaghetti yummy",
-  tags: ["pasta", "sugar"],
-  author: "John",
-  authorId: "123441",
-};
-
+import {
+  dummyMeal,
+  dummyMeals,
+  dummyPlace,
+  dummyPlaces,
+  dummyUser,
+  dummyUsers
+} from "./utils/dummyData.js";
 
 
 export const resolvers = {
   Query: {
     user: () => dummyUser,
+    users: () => dummyUsers,
     meal: () => dummyMeal,
+    meals: () => dummyMeals,
+    place: () => dummyPlace,
+    places: () => dummyPlaces,
   },
 };

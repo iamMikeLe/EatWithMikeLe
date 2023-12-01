@@ -1,6 +1,10 @@
 type Query {
   user: User,
+  users: [User],
   meal: Meal
+  meals: [Meal],
+  place: Place,
+  places: [Place]
 }
 
 type User {
@@ -21,4 +25,19 @@ type Meal {
   tags: [String],
   author: String,
   authorId: String,
+}
+
+type Place {
+  placeId: String,
+  name: String,
+  description: String,
+  tags: [String],
+  author: String,
+  authorId: String,
+  coords: Coords,
+}
+
+type Coords {
+  longitude: String,
+  latitude: String
 }
