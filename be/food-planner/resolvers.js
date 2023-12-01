@@ -10,11 +10,15 @@ import {
 
 export const resolvers = {
   Query: {
-    user: () => dummyUser,
+    user: (_root, { id }) => {
+      console.log(id);
+      // db fetch function by user id here needed
+      return dummyUser;
+    },
     users: () => dummyUsers,
-    meal: () => dummyMeal,
+    meal: (_root, { id }) => dummyMeal,
     meals: () => dummyMeals,
-    place: () => dummyPlace,
+    place: (_root, { id }) => dummyPlace,
     places: () => dummyPlaces,
   },
 };

@@ -1,9 +1,9 @@
 type Query {
-  user: User,
+  user(id: ID!): User,
   users: [User!],
-  meal: Meal
+  meal(id: ID!): Meal
   meals: [Meal!],
-  place: Place,
+  place(id: ID!): Place,
   places: [Place!]
 }
 
