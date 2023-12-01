@@ -16,6 +16,7 @@ type User {
   avatar: String,
   favorites: [String],
   learned: [String],
+  meals: [Meal!]!,
 }
 
 type Meal {
