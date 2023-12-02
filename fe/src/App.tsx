@@ -1,7 +1,7 @@
-import { JSXElementConstructor, Key, ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 
 // react-router components
-import { Route, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 // @mui material components
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,11 +17,8 @@ import Sidenav from "examples/Sidenav";
 // Material Dashboard 2 PRO React TS Dark Mode themes
 import themeDark from "assets/theme-dark";
 
-// Material Dashboard 2 PRO React TS routes
+// routes
 import routes from "routes";
-
-// pages
-import Analytics from "layouts/dashboards/analytics";
 
 // Images
 import brandDark from "assets/images/logo-ct-dark.png";
@@ -34,26 +31,6 @@ export default function App() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
-
-  const getRoutes = (allRoutes: any[]): any =>
-    allRoutes.map(
-      (route: {
-        collapse: any;
-        route: string;
-        component: ReactElement<any, string | JSXElementConstructor<any>>;
-        key: Key;
-      }) => {
-        if (route.collapse) {
-          return getRoutes(route.collapse);
-        }
-
-        if (route.route) {
-          return <Route path={route.route} element={route.component} key={route.key} />;
-        }
-
-        return null;
-      }
-    );
 
   return (
     <ThemeProvider theme={themeDark}>
@@ -84,7 +61,14 @@ export default function App() {
         </MDBox>
       </>
 
-      <Analytics />
+      <Routes>
+        {routes.map((route) => {
+          if (route.type === "collapse") {
+            return <Route path={route.route} element={route.component} key={route.key} />;
+          }
+        })}
+        <Route path="*" element={<Navigate to="/dashboards/analytics" />} />
+      </Routes>
     </ThemeProvider>
   );
 }
