@@ -116,7 +116,7 @@ function MaterialUIControllerProvider({ children }: { children: ReactNode }): JS
     openConfigurator: false,
     direction: "ltr",
     layout: "dashboard",
-    darkMode: false,
+    darkMode: true,
   };
 
   const [controller, dispatch] = useReducer(reducer, initialState);
@@ -186,15 +186,16 @@ const setDarkMode = (
 
 export {
   MaterialUIControllerProvider,
-  useMaterialUIController,
+  setDarkMode,
+  setDirection,
+  setFixedNavbar,
+  setLayout,
   setMiniSidenav,
-  setTransparentSidenav,
-  setWhiteSidenav,
+  setOpenConfigurator,
   setSidenavColor,
   setTransparentNavbar,
-  setFixedNavbar,
-  setOpenConfigurator,
-  setDirection,
-  setLayout,
-  setDarkMode,
+  setTransparentSidenav,
+  setWhiteSidenav,
+  useMaterialUIController
 };
+
