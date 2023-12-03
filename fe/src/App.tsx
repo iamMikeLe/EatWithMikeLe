@@ -11,9 +11,6 @@ import { ThemeProvider } from "@mui/material/styles";
 // Material Dashboard 2 PRO React TS components
 import MDBox from "components/MDBox";
 
-// Material Dashboard 2 PRO React TS exampless
-import Sidenav from "examples/Sidenav";
-
 // Material Dashboard 2 PRO React TS Dark Mode themes
 import themeDark from "assets/theme-dark";
 
@@ -22,6 +19,7 @@ import routes from "routes";
 
 // Images
 import brandDark from "assets/images/logo-ct-dark.png";
+import SideNavigation from "components/SideNavigation";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -36,7 +34,12 @@ export default function App() {
     <ThemeProvider theme={themeDark}>
       <CssBaseline />
       <>
-        <Sidenav color="info" brand={brandDark} brandName="Eat With Mike Le" routes={routes} />
+        <SideNavigation
+          color="info"
+          brand={brandDark}
+          brandName="Eat With Mike Le"
+          routes={routes}
+        />
 
         <MDBox
           display="flex"
