@@ -18,7 +18,7 @@ import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 import Icon from "@mui/material/Icon";
 
-// Material Dashboard 2 PRO React TS components
+// Material Dashboard 2 PRO React TS c\omponents
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 

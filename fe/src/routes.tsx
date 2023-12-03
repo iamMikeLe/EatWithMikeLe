@@ -4,6 +4,9 @@ import Analytics from "layouts/dashboards/analytics";
 import Meals from "pages/meals";
 
 // @mui icons
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import LunchDiningIcon from "@mui/icons-material/LunchDining";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import Icon from "@mui/material/Icon";
 
 const routes = [
@@ -12,9 +15,9 @@ const routes = [
     type: "collapse",
     name: "Meals",
     key: "meals",
-    route: "/pages/analytics",
+    route: "/pages/meals",
     component: <Meals />,
-    icon: <Icon fontSize="medium">Fastfood</Icon>,
+    icon: <LunchDiningIcon fontSize="medium" />,
     noCollapse: true,
   },
   {
@@ -23,7 +26,7 @@ const routes = [
     key: "places",
     route: "/dashboards/analytics",
     component: <Analytics />,
-    icon: <Icon fontSize="medium">FmdGood</Icon>,
+    icon: <RestaurantMenuIcon fontSize="medium" />,
     noCollapse: true,
   },
   {
@@ -32,7 +35,7 @@ const routes = [
     key: "planner",
     route: "/applications/calendar",
     component: <Calendar />,
-    icon: <Icon fontSize="medium">EditCalendar</Icon>,
+    icon: <CalendarMonthIcon fontSize="medium" />,
     noCollapse: true,
   },
 ];
