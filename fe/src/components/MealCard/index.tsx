@@ -6,9 +6,9 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
 // Material Dashboard 2 PRO React TS components
-import MDBox from "components/MDBox";
-import MDButton from "components/MDButton";
-import MDTypography from "components/MDTypography";
+import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
 // Declaring props types for DefaultProjectCard
 interface Props {
@@ -43,7 +43,7 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
         overflow: "visible",
       }}
     >
-      <MDBox position="relative" width="100.25%" shadow="xl" borderRadius="xl">
+      <Box position="relative" width="100.25%" shadow="xl" borderRadius="xl">
         <CardMedia
           src={image}
           component="img"
@@ -56,18 +56,18 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
             objectPosition: "center",
           }}
         />
-      </MDBox>
-      <MDBox mt={1} mx={0.5}>
-        <MDTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
+      </Box>
+      <Box mt={1} mx={0.5}>
+        <Typography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
           {title}
-        </MDTypography>
-        <MDBox mb={3} lineHeight={0}>
-          <MDTypography variant="button" fontWeight="light" color="text">
+        </Typography>
+        <Box mb={3} lineHeight={0}>
+          <Typography variant="button" fontWeight="light" color="text">
             {description}
-          </MDTypography>
-        </MDBox>
-        <MDBox display="flex" justifyContent="space-between" alignItems="center">
-          <MDButton
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Button
             component={Link}
             to={action.route}
             variant="outlined"
@@ -75,9 +75,9 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
             color={action.color}
           >
             {action.label}
-          </MDButton>
-        </MDBox>
-      </MDBox>
+          </Button>
+        </Box>
+      </Box>
     </Card>
   );
 }

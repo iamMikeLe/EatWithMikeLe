@@ -1,6 +1,3 @@
-// Pages
-import Calendar from "layouts/applications/calendar";
-import Analytics from "layouts/dashboards/analytics";
 import Meals from "pages/meals";
 
 // @mui icons
@@ -25,7 +22,7 @@ const routes = [
     name: "Visited places",
     key: "places",
     route: "/dashboards/analytics",
-    component: <Analytics />,
+    component: <Meals />,
     icon: <RestaurantMenuIcon fontSize="medium" />,
     noCollapse: true,
   },
@@ -34,7 +31,7 @@ const routes = [
     name: "Food planner",
     key: "planner",
     route: "/applications/calendar",
-    component: <Calendar />,
+    component: <Meals />,
     icon: <CalendarMonthIcon fontSize="medium" />,
     noCollapse: true,
   },

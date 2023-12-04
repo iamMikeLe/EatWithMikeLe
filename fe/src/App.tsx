@@ -9,7 +9,7 @@ import Icon from "@mui/material/Icon";
 import { ThemeProvider } from "@mui/material/styles";
 
 // Material Dashboard 2 PRO React TS components
-import MDBox from "components/MDBox";
+import Box from "components/Box";
 
 // Material Dashboard 2 PRO React TS Dark Mode themes
 import themeDark from "assets/theme-dark";
@@ -19,7 +19,7 @@ import routes from "routes";
 
 // Images
 import brandDark from "assets/images/logo-ct-dark.png";
-import SideNavigation from "components/SideNavigation";
+import SideNavigation from "layouts/SideNavigation";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -41,7 +41,7 @@ export default function App() {
           routes={routes}
         />
 
-        <MDBox
+        <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -61,7 +61,7 @@ export default function App() {
           <Icon fontSize="small" color="inherit">
             settings
           </Icon>
-        </MDBox>
+        </Box>
       </>
 
       <Routes>
