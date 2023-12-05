@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React TS - v1.0.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-2-pro-react-ts
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect, useState } from "react";
 
 // @mui material components
@@ -29,9 +14,6 @@ import Tabs from "@mui/material/Tabs";
 import Box from "components/Box";
 import Input from "components/Input";
 
-// Material Dashboard 2 PRO React TS components
-import MealCard from "components/MealCard";
-
 import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
 
@@ -40,13 +22,10 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 // Images
 import backgroundImage from "assets/images/bg-profile.jpeg";
-import homeDecor2 from "assets/images/home-decor-2.jpg";
-import homeDecor3 from "assets/images/home-decor-3.jpg";
-import homeDecor4 from "assets/images/home-decor-4.jpeg";
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+
+//Meals components
+import { dummyMeals } from "./Dummy";
+import Meal from "./Meal";
 
 function Meals(): JSX.Element {
   const [tabsOrientation, setTabsOrientation] = useState<"horizontal" | "vertical">("horizontal");
@@ -129,82 +108,15 @@ function Meals(): JSX.Element {
           </Grid>
           <Box p={2}>
             <Grid container spacing={6}>
-              <Grid item xs={12} md={6} xl={3}>
-                <MealCard
-                  image={homeDecor2}
-                  label="project #1"
-                  title="scandinavian"
-                  description="Music is something that everyone has their own specific opinion about."
-                  action={{
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "view project",
-                  }}
-                  authors={[
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team4, name: "Peterson" },
-                    { image: team1, name: "Elena Morison" },
-                    { image: team2, name: "Ryan Milly" },
-                  ]}
+              {dummyMeals.map((meal, index) => (
+                <Meal
+                  image={meal.imageUrl}
+                  title={meal.title}
+                  description={meal.description}
+                  action={meal.action}
+                  key={index}
                 />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <MealCard
-                  image={homeDecor3}
-                  label="project #3"
-                  title="minimalist"
-                  description="Different people have different taste, and various types of music."
-                  action={{
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "view project",
-                  }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <MealCard
-                  image={homeDecor4}
-                  label="project #4"
-                  title="gothic"
-                  description="Why would anyone pick blue over pink? Pink is obviously a better color."
-                  action={{
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "view project",
-                  }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <MealCard
-                  image={homeDecor4}
-                  label="project #4"
-                  title="gothic"
-                  description="Why would anyone pick blue over pink? Pink is obviously a better color."
-                  action={{
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "view project",
-                  }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
-                />
-              </Grid>
+              ))}
             </Grid>
           </Box>
         </Card>
