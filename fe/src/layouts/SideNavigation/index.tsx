@@ -14,13 +14,12 @@ import Box from "components/Box";
 import Typography from "components/Typography";
 
 // Material Dashboard 2 PRO React TS examples components
-import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
-import SidenavItem from "examples/Sidenav/SidenavItem";
-import SidenavList from "examples/Sidenav/SidenavList";
+import SidenavCollapse from "./Sidenav/SidenavCollapse";
+import SidenavItem from "./Sidenav/SidenavItem";
 
 // Custom styles for the Sidenav
-import SidenavRoot from "examples/Sidenav/SidenavRoot";
-import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
+import SidenavRoot from "./Sidenav/SidenavRoot";
+import sidenavLogoLabel from "./Sidenav/styles/sidenav";
 
 // Material Dashboard 2 PRO React context
 import {
@@ -170,7 +169,18 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
           </NavLink>
         );
       }
-      return <SidenavList key={key}>{returnValue}</SidenavList>;
+
+      return (
+        <List
+          key={key}
+          sx={{
+            px: 2,
+            my: 0.3,
+          }}
+        >
+          {returnValue}
+        </List>
+      );
     });
 
   // Render all the routes from the routes.js (All the visible items on the Sidenav)

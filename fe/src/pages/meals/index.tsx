@@ -24,16 +24,16 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import MDInput from "components/MDInput";
 
 // Material Dashboard 2 PRO React TS components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import Box from "components/Box";
+import Input from "components/Input";
 
-// Material Dashboard 2 PRO React TS examples components
+// Material Dashboard 2 PRO React TS components
 import MealCard from "components/MealCard";
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+
+import DashboardLayout from "layouts/DashboardLayout";
+import DashboardNavbar from "layouts/DashboardNavbar";
 
 // Material Dashboard 2 PRO React TS Base Styles
 import breakpoints from "assets/theme/base/breakpoints";
@@ -77,9 +77,9 @@ function Meals(): JSX.Element {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox mb={2} />
-      <MDBox position="relative" mb={5}>
-        <MDBox
+      <Box mb={2} />
+      <Box position="relative" mb={5}>
+        <Box
           display="flex"
           alignItems="center"
           position="relative"
@@ -107,9 +107,9 @@ function Meals(): JSX.Element {
         >
           <Grid container spacing={3} alignItems="center">
             <Grid item>
-              <MDBox height="100%" mt={0.5} lineHeight={1}>
-                <MDInput label="Search for meal..." />
-              </MDBox>
+              <Box height="100%" mt={0.5} lineHeight={1}>
+                <Input label="Search for meal..." />
+              </Box>
             </Grid>
             <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
               <AppBar position="static">
@@ -127,7 +127,7 @@ function Meals(): JSX.Element {
               </AppBar>
             </Grid>
           </Grid>
-          <MDBox p={2}>
+          <Box p={2}>
             <Grid container spacing={6}>
               <Grid item xs={12} md={6} xl={3}>
                 <MealCard
@@ -206,9 +206,9 @@ function Meals(): JSX.Element {
                 />
               </Grid>
             </Grid>
-          </MDBox>
+          </Box>
         </Card>
-      </MDBox>
+      </Box>
     </DashboardLayout>
   );
 }
