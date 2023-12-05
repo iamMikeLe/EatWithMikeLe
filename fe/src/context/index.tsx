@@ -196,6 +196,5 @@ export {
   setTransparentNavbar,
   setTransparentSidenav,
   setWhiteSidenav,
-  useMaterialUIController
+  useMaterialUIController // eslint-disable-line
 };
-
