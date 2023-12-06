@@ -70,7 +70,7 @@ export default function App() {
             return <Route path={route.route} element={route.component} key={route.key} />;
           }
         })}
-        <Route path="*" element={<Navigate to="/dashboards/analytics" />} />
+        <Route path="*" element={<Navigate to="/pages/meals" />} />
       </Routes>
     </ThemeProvider>
   );

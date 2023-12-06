@@ -4,7 +4,7 @@ import Meals from "pages/meals";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import Icon from "@mui/material/Icon";
+import { Counter } from "pages/counter/Counter";
 
 const routes = [
   { type: "title", title: "Food", key: "title-docs" },
@@ -22,7 +22,7 @@ const routes = [
     name: "Visited places",
     key: "places",
     route: "/dashboards/analytics",
-    component: <Meals />,
+    component: <Counter />,
     icon: <RestaurantMenuIcon fontSize="medium" />,
     noCollapse: true,
   },
