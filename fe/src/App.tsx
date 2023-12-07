@@ -27,7 +27,9 @@ export default function App() {
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
     document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
+    if (document.scrollingElement) {
+      document.scrollingElement.scrollTop = 0;
+    }
   }, [pathname]);
 
   return (
@@ -67,7 +69,13 @@ export default function App() {
       <Routes>
         {routes.map((route) => {
           if (route.type === "collapse") {
-            return <Route path={route.route} element={route.component} key={route.key} />;
+            return (
+              <Route
+                path={route.route}
+                element={route.component}
+                key={route.key}
+              />
+            );
           }
         })}
         <Route path="*" element={<Navigate to="/pages/meals" />} />
