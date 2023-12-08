@@ -24,13 +24,10 @@ import breakpoints from "assets/theme/base/breakpoints";
 import backgroundImage from "assets/images/bg-profile.jpeg";
 
 //Meals components
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { dummyMeals } from "./Dummy";
 import Meal from "./Meal";
-import { fetchMealsAsync, selectMeals } from "./mealSlice";
 
 function Meals(): JSX.Element {
-  const meals = useAppSelector(selectMeals);
-  const dispatch = useAppDispatch();
   const [tabsOrientation, setTabsOrientation] = useState<
     "horizontal" | "vertical"
   >("horizontal");
@@ -45,7 +42,7 @@ function Meals(): JSX.Element {
     }
 
     /** 
-      The event listener that's calling the handleTabsOrientation function when resizing the window.
+     The event listener that's calling the handleTabsOrientation function when resizing the window.
     */
     window.addEventListener("resize", handleTabsOrientation);
 
@@ -56,11 +53,7 @@ function Meals(): JSX.Element {
     return () => window.removeEventListener("resize", handleTabsOrientation);
   }, [tabsOrientation]);
 
-  useEffect(() => {
-    dispatch(fetchMealsAsync());
-  }, []);
-
-  const handleSetTabValue = (_event: any, newValue: any) =>
+  const handleSetTabValue = (event: any, newValue: any) =>
     setTabValue(newValue);
 
   return (
@@ -128,22 +121,15 @@ function Meals(): JSX.Element {
           </Grid>
           <Box p={2}>
             <Grid container spacing={6}>
-              {!meals && <div>Skeleton Loading...</div>}
-              {meals?.length === 0 && <div>No meals found</div>}
-              {meals && meals.length > 0 && (
-                <>
-                  {/* Your existing code */}
-                  {meals.map((meal, index) => (
-                    <Meal
-                      image={meal.imageUrl}
-                      title={meal.title}
-                      description={meal.description}
-                      action={meal.action}
-                      key={index}
-                    />
-                  ))}
-                </>
-              )}
+              {dummyMeals.map((meal, index) => (
+                <Meal
+                  image={meal.imageUrl}
+                  title={meal.title}
+                  description={meal.description}
+                  action={meal.action}
+                  key={index}
+                />
+              ))}
             </Grid>
           </Box>
         </Card>

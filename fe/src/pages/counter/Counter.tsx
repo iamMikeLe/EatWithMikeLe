@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   decrement,
   increment,
@@ -30,11 +30,17 @@ export function Counter() {
       <Box position="relative" mb={5}>
         <div>
           <div>
-            <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+            <button
+              aria-label="Decrement value"
+              onClick={() => dispatch(decrement())}
+            >
               -
             </button>
             <span>{count}</span>
-            <button aria-label="Increment value" onClick={() => dispatch(increment())}>
+            <button
+              aria-label="Increment value"
+              onClick={() => dispatch(increment())}
+            >
               +
             </button>
           </div>
@@ -44,9 +50,15 @@ export function Counter() {
               value={incrementAmount}
               onChange={(e) => setIncrementAmount(e.target.value)}
             />
-            <button onClick={() => dispatch(incrementByAmount(incrementValue))}>Add Amount</button>
-            <button onClick={() => dispatch(incrementAsync(incrementValue))}>Add Async</button>
-            <button onClick={() => dispatch(incrementIfOdd(incrementValue))}>Add If Odd</button>
+            <button onClick={() => dispatch(incrementByAmount(incrementValue))}>
+              Add Amount
+            </button>
+            <button onClick={() => dispatch(incrementAsync(incrementValue))}>
+              Add Async
+            </button>
+            <button onClick={() => dispatch(incrementIfOdd(incrementValue))}>
+              Add If Odd
+            </button>
           </div>
         </div>
       </Box>
