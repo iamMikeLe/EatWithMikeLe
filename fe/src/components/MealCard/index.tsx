@@ -17,16 +17,6 @@ interface Props {
   description: string;
   action: {
     route: string;
-    color:
-      | "primary"
-      | "secondary"
-      | "info"
-      | "success"
-      | "warning"
-      | "error"
-      | "light"
-      | "dark"
-      | "white";
     label: string;
   };
   [key: string]: any;
@@ -58,7 +48,12 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
         />
       </Box>
       <Box mt={1} mx={0.5}>
-        <Typography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
+        <Typography
+          variant="button"
+          fontWeight="regular"
+          color="text"
+          textTransform="capitalize"
+        >
           {title}
         </Typography>
         <Box mb={3} lineHeight={0}>
@@ -72,7 +67,7 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
             to={action.route}
             variant="outlined"
             size="small"
-            color={action.color}
+            color="info"
           >
             {action.label}
           </Button>

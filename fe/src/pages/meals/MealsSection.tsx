@@ -14,9 +14,13 @@ function MealsSection(): JSX.Element {
         {!meals && (
           <>
             {Array.from(new Array(12)).map((_item, index) => (
-              <Grid item xs={12} md={6} xl={3} wrap="nowrap">
-                <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
-                  <Skeleton variant="rectangular" width={320} height={200} />
+              <Grid item xs={12} md={6} xl={3} key={index}>
+                <Box sx={{ width: "100%", marginRight: 0.5, my: 5 }}>
+                  <Skeleton
+                    variant="rectangular"
+                    width="100.25%"
+                    height={200}
+                  />
                   <Box sx={{ pt: 0.5 }}>
                     <Skeleton width="60%" />
                     <Skeleton />

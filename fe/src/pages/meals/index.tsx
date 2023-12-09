@@ -36,6 +36,9 @@ function Meals(): JSX.Element {
   const [tabValue, setTabValue] = useState(0);
 
   useEffect(() => {
+    dispatch(fetchMealsAsync());
+  }, []);
+  useEffect(() => {
     // A function that sets the orientation state of the tabs.
     function handleTabsOrientation() {
       return window.innerWidth < breakpoints.values.sm
@@ -55,13 +58,10 @@ function Meals(): JSX.Element {
     return () => window.removeEventListener("resize", handleTabsOrientation);
   }, [tabsOrientation]);
 
-  useEffect(() => {
+  const handleSetTabValue = (_event: any, newValue: any) => {
     dispatch(fetchMealsAsync());
-  }, []);
-
-  const handleSetTabValue = (_event: any, newValue: any) =>
     setTabValue(newValue);
-
+  };
   return (
     <DashboardLayout>
       <DashboardNavbar />

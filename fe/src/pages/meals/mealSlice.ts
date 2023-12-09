@@ -36,9 +36,14 @@ export const mealsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchMealsAsync.fulfilled, (state, action) => {
-      state.value = action.payload;
-    });
+    builder
+      .addCase(fetchMealsAsync.pending, (state) => {
+        // resetting state to trigger loading
+        state.value = null;
+      })
+      .addCase(fetchMealsAsync.fulfilled, (state, action) => {
+        state.value = action.payload;
+      });
   },
 });
 
