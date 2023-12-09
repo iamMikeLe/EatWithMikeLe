@@ -1,4 +1,5 @@
 import Grid from "@mui/material/Grid";
+import Skeleton from "@mui/material/Skeleton";
 
 import Box from "components/Box";
 import MealCard from "components/MealCard";
@@ -11,9 +12,20 @@ function MealsSection(): JSX.Element {
     <Box p={2}>
       <Grid container spacing={6}>
         {!meals && (
-          <Grid item xs={12} md={6} xl={3}>
-            Skeleton Loading...{" "}
-          </Grid>
+          <>
+            {Array.from(new Array(12)).map((_item, index) => (
+              <Grid item xs={12} md={6} xl={3} wrap="nowrap">
+                <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
+                  <Skeleton variant="rectangular" width={320} height={200} />
+                  <Box sx={{ pt: 0.5 }}>
+                    <Skeleton width="60%" />
+                    <Skeleton />
+                    <Skeleton width="40%" />
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
+          </>
         )}
         {meals?.length === 0 && (
           <Grid item xs={12} md={6} xl={3}>

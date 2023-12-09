@@ -90,39 +90,6 @@ export const dummyMeals = [
     },
   },
   {
-    mealId: "76867857657",
-    imageUrl: homeDecor2,
-    title: "Sandwitch 1",
-    description: "yummy sandwitch",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
-  },
-  {
-    mealId: "5736786876",
-    imageUrl: homeDecor2,
-    title: "Sandwitch 1",
-    description: "yummy sandwitch",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
-  },
-  {
-    mealId: "5678657436786374",
-    imageUrl: homeDecor2,
-    title: "Sandwitch 1",
-    description: "yummy sandwitch",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
-  },
-  {
     mealId: "567867856786",
     imageUrl: homeDecor2,
     title: "Sandwitch 1",
