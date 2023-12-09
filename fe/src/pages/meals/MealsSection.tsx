@@ -9,13 +9,13 @@ import { selectMeals } from "./mealSlice";
 function MealsSection(): JSX.Element {
   const meals = useAppSelector(selectMeals);
   return (
-    <Box p={2}>
+    <Box p={2} sx={{ marginTop: 6, marginBottom: 6 }}>
       <Grid container spacing={6}>
         {!meals && (
           <>
             {Array.from(new Array(12)).map((_item, index) => (
               <Grid item xs={12} md={6} xl={3} key={index}>
-                <Box sx={{ width: "100%", marginRight: 0.5, my: 5 }}>
+                <Box sx={{ width: "100%", marginRight: 0.5 }}>
                   <Skeleton
                     variant="rectangular"
                     width="100.25%"
