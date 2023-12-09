@@ -27,7 +27,12 @@ interface Props {
 function Meal({ image, title, description, action }: Props): JSX.Element {
   return (
     <Grid item xs={12} md={6} xl={3}>
-      <MealCard image={image} title={title} description={description} action={action} />
+      <MealCard
+        image={image}
+        title={title}
+        description={description}
+        action={action}
+      />
     </Grid>
   );
 }

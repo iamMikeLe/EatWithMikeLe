@@ -3,6 +3,7 @@ import { fetchMeals } from "API/MealsAPI";
 import { RootState } from "../../store/store";
 
 export interface MealData {
+  mealId: string;
   imageUrl: string;
   title: string;
   description: string;

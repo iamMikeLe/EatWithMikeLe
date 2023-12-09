@@ -24,12 +24,11 @@ import breakpoints from "assets/theme/base/breakpoints";
 import backgroundImage from "assets/images/bg-profile.jpeg";
 
 //Meals components
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import Meal from "./Meal";
-import { fetchMealsAsync, selectMeals } from "./mealSlice";
+import { useAppDispatch } from "store/hooks";
+import MealsSection from "./MealsSection";
+import { fetchMealsAsync } from "./mealSlice";
 
 function Meals(): JSX.Element {
-  const meals = useAppSelector(selectMeals);
   const dispatch = useAppDispatch();
   const [tabsOrientation, setTabsOrientation] = useState<
     "horizontal" | "vertical"
@@ -126,26 +125,7 @@ function Meals(): JSX.Element {
               </AppBar>
             </Grid>
           </Grid>
-          <Box p={2}>
-            <Grid container spacing={6}>
-              {!meals && <div>Skeleton Loading...</div>}
-              {meals?.length === 0 && <div>No meals found</div>}
-              {meals && meals.length > 0 && (
-                <>
-                  {/* Your existing code */}
-                  {meals.map((meal, index) => (
-                    <Meal
-                      image={meal.imageUrl}
-                      title={meal.title}
-                      description={meal.description}
-                      action={meal.action}
-                      key={index}
-                    />
-                  ))}
-                </>
-              )}
-            </Grid>
-          </Box>
+          <MealsSection />
         </Card>
       </Box>
     </DashboardLayout>
