@@ -15,7 +15,7 @@ import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
 
 // Images
-import backgroundImage from "assets/images/bg-profile.jpeg";
+import backgroundImage from "assets/images/bg-profile.jpg";
 
 //Meals components
 import { useAppDispatch } from "store/hooks";
