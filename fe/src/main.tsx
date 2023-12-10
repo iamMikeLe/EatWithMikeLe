@@ -7,6 +7,8 @@ import { store } from "./store/store";
 // Material Dashboard 2 PRO React TS Context Provider
 import { MaterialUIControllerProvider } from "context";
 
+import "./locale/i18n";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
