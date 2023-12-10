@@ -1,11 +1,11 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 // @mui material components
 
 import AppBar from "@mui/material/AppBar";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import { useTranslation } from "react-i18next";
 
 // Material Dashboard 2 PRO React TS components
 import Box from "components/Box";
@@ -24,8 +24,8 @@ import TabsSection from "./TabsSection";
 import { fetchMealsAsync } from "./mealSlice";
 
 function Meals(): JSX.Element {
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   useEffect(() => {
     dispatch(fetchMealsAsync());
   }, []);
@@ -67,9 +67,8 @@ function Meals(): JSX.Element {
           <Grid container spacing={3} alignItems="center">
             <Grid item>
               <Box height="100%" mt={0.5} lineHeight={1}>
-                <Input label="Search for meal..." />
+                <Input label={t("SEARCH_MEAL")} />
               </Box>
-              <h1>{t("Welcome to React")}</h1>
             </Grid>
             <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
               <AppBar position="static">

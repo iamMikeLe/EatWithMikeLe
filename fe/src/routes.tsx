@@ -7,10 +7,10 @@ import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import { Counter } from "pages/counter/Counter";
 
 const routes = [
-  { type: "title", title: "Food", key: "title-docs" },
+  { type: "title", title: "FOOD_SECTION", key: "title-docs" },
   {
     type: "collapse",
-    name: "Meals",
+    name: "MEALS",
     key: "meals",
     route: "/pages/meals",
     component: <Meals />,
@@ -19,18 +19,18 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Visited places",
+    name: "VISITED_PLACES",
     key: "places",
-    route: "/dashboards/analytics",
+    route: "/dashboards/places",
     component: <Counter />,
     icon: <RestaurantMenuIcon fontSize="medium" />,
     noCollapse: true,
   },
   {
     type: "collapse",
-    name: "Food planner",
+    name: "FOOD_PLANNER",
     key: "planner",
-    route: "/applications/calendar",
+    route: "/applications/planner",
     component: <Meals />,
     icon: <CalendarMonthIcon fontSize="medium" />,
     noCollapse: true,

@@ -1,5 +1,16 @@
 {
   "translation": {
-    "Welcome to React": "Welcome to React and react-i18next"
+    "MEALS": "Meals",
+    "VISITED_PLACES": "Visited Places",
+    "FOOD_PLANNER": "Food Planner",
+    "ALL": "All",
+    "MINE": "Moi",
+    "FAVORITES": "Favorites",
+    "FOOD_SECTION": "Food Section",
+    "SEARCH_MEAL": "Search for Meal...",
+    "VIEW_MEAL": "View Meal",
+    "MEALS_CUSTOM_TRANS": "Meals",
+    "PLACES_CUSTOM_TRANS": "Visited Places",
+    "PLANNER_CUSTOM_TRANS": "Food Planner"
   }
 }

@@ -6,7 +6,7 @@ export type AppSettingsSlice = {
 };
 
 const initialState: AppSettingsSlice = {
-  language: "en",
+  language: "cz",
 };
 
 export const appSettingsSlice = createSlice({

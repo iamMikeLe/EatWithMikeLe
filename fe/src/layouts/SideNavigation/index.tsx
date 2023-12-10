@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 
 // react-router-dom components
+import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
 
 // @mui material components
@@ -31,7 +32,14 @@ import {
 
 // Declaring props types for Sidenav
 interface Props {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+  color?:
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error"
+    | "dark";
   brand?: string;
   brandName: string;
   routes: {
@@ -50,12 +58,22 @@ interface Props {
   [key: string]: any;
 }
 
-function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JSX.Element {
+function SideNavigation({
+  color,
+  brand,
+  brandName,
+  routes,
+  ...rest
+}: Props): JSX.Element {
   const [openCollapse, setOpenCollapse] = useState<boolean | string>(false);
-  const [openNestedCollapse, setOpenNestedCollapse] = useState<boolean | string>(false);
+  const [openNestedCollapse, setOpenNestedCollapse] = useState<
+    boolean | string
+  >(false);
   const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } = controller;
+  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } =
+    controller;
   const location = useLocation();
+  const { t } = useTranslation();
   const { pathname } = location;
   const collapseName = pathname.split("/").slice(1)[0];
   const items = pathname.split("/").slice(1);
@@ -92,8 +110,14 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
     // A function that sets the mini state of the sidenav.
     function handleMiniSidenav() {
       setMiniSidenav(dispatch, window.innerWidth < 1200);
-      setTransparentSidenav(dispatch, window.innerWidth < 1200 ? false : transparentSidenav);
-      setWhiteSidenav(dispatch, window.innerWidth < 1200 ? false : whiteSidenav);
+      setTransparentSidenav(
+        dispatch,
+        window.innerWidth < 1200 ? false : transparentSidenav
+      );
+      setWhiteSidenav(
+        dispatch,
+        window.innerWidth < 1200 ? false : whiteSidenav
+      );
     }
 
     /** 
@@ -119,11 +143,11 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
           rel="noreferrer"
           sx={{ textDecoration: "none" }}
         >
-          <SidenavItem name={name} nested />
+          <SidenavItem name={t(name)} nested />
         </Link>
       ) : (
         <NavLink to={route} key={key} style={{ textDecoration: "none" }}>
-          <SidenavItem name={name} active={route === pathname} nested />
+          <SidenavItem name={t(name)} active={route === pathname} nested />
         </NavLink>
       )
     );
@@ -140,11 +164,12 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
           <SidenavItem
             key={key}
             color={color}
-            name={name}
+            name={t(name)}
             active={key === itemParentName ? "isParent" : false}
             open={openNestedCollapse === key}
             onClick={({ currentTarget }: any) =>
-              openNestedCollapse === key && currentTarget.classList.contains("MuiListItem-root")
+              openNestedCollapse === key &&
+              currentTarget.classList.contains("MuiListItem-root")
                 ? setOpenNestedCollapse(false)
                 : setOpenNestedCollapse(key)
             }
@@ -161,11 +186,19 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
             rel="noreferrer"
             sx={{ textDecoration: "none" }}
           >
-            <SidenavItem color={color} name={name} active={key === itemName} />
+            <SidenavItem
+              color={color}
+              name={t(name)}
+              active={key === itemName}
+            />
           </Link>
         ) : (
           <NavLink to={route} key={key} style={{ textDecoration: "none" }}>
-            <SidenavItem color={color} name={name} active={key === itemName} />
+            <SidenavItem
+              color={color}
+              name={t(name)}
+              active={key === itemName}
+            />
           </NavLink>
         );
       }
@@ -185,7 +218,17 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
 
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
   const renderRoutes = routes.map(
-    ({ type, name, icon, title, collapse, noCollapse, key, href, route }: any) => {
+    ({
+      type,
+      name,
+      icon,
+      title,
+      collapse,
+      noCollapse,
+      key,
+      href,
+      route,
+    }: any) => {
       let returnValue;
 
       if (type === "collapse") {
@@ -199,7 +242,7 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
               sx={{ textDecoration: "none" }}
             >
               <SidenavCollapse
-                name={name}
+                name={t(name)}
                 icon={icon}
                 active={key === collapseName}
                 noCollapse={noCollapse}
@@ -210,7 +253,7 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
           returnValue = (
             <NavLink to={route} key={key}>
               <SidenavCollapse
-                name={name}
+                name={t(name)}
                 icon={icon}
                 noCollapse={noCollapse}
                 active={key === collapseName}
@@ -223,11 +266,15 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
           returnValue = (
             <SidenavCollapse
               key={key}
-              name={name}
+              name={t(name)}
               icon={icon}
               active={key === collapseName}
               open={openCollapse === key}
-              onClick={() => (openCollapse === key ? setOpenCollapse(false) : setOpenCollapse(key))}
+              onClick={() =>
+                openCollapse === key
+                  ? setOpenCollapse(false)
+                  : setOpenCollapse(key)
+              }
             >
               {collapse ? renderCollapse(collapse) : null}
             </SidenavCollapse>
@@ -247,7 +294,7 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
             mb={1}
             ml={1}
           >
-            {title}
+            {t(title)}
           </Typography>
         );
       } else if (type === "divider") {
@@ -287,12 +334,19 @@ function SideNavigation({ color, brand, brandName, routes, ...rest }: Props): JS
           </Typography>
         </Box>
         <Box component={NavLink} to="/" display="flex" alignItems="center">
-          {brand && <Box component="img" src={brand} alt="Brand" width="2rem" />}
+          {brand && (
+            <Box component="img" src={brand} alt="Brand" width="2rem" />
+          )}
           <Box
             width={!brandName && "100%"}
             sx={(theme: any) => sidenavLogoLabel(theme, { miniSidenav })}
           >
-            <Typography component="h6" variant="button" fontWeight="medium" color={textColor}>
+            <Typography
+              component="h6"
+              variant="button"
+              fontWeight="medium"
+              color={textColor}
+            >
               {brandName}
             </Typography>
           </Box>

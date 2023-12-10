@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // react-router components
 import { Link, useLocation } from "react-router-dom";
@@ -45,8 +46,15 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
   const [navbarType, setNavbarType] = useState<
     "fixed" | "absolute" | "relative" | "static" | "sticky"
   >();
+  const { t } = useTranslation();
   const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
+  const {
+    miniSidenav,
+    transparentNavbar,
+    fixedNavbar,
+    openConfigurator,
+    darkMode,
+  } = controller;
   const [openMenu, setOpenMenu] = useState<any>(false);
   const route = useLocation().pathname.split("/").slice(1);
 
@@ -60,7 +68,10 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
 
     // A function that sets the transparent state of the navbar.
     function handleTransparentNavbar() {
-      setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
+      setTransparentNavbar(
+        dispatch,
+        (fixedNavbar && window.scrollY === 0) || !fixedNavbar
+      );
     }
 
     /** 
@@ -77,7 +88,8 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
   }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+  const handleConfiguratorOpen = () =>
+    setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
 
@@ -95,8 +107,14 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
       sx={{ mt: 2 }}
     >
       <NotificationItem icon={<Icon>email</Icon>} title="Check new messages" />
-      <NotificationItem icon={<Icon>podcasts</Icon>} title="Manage Podcast sessions" />
-      <NotificationItem icon={<Icon>shopping_cart</Icon>} title="Payment successfully completed" />
+      <NotificationItem
+        icon={<Icon>podcasts</Icon>}
+        title="Manage Podcast sessions"
+      />
+      <NotificationItem
+        icon={<Icon>shopping_cart</Icon>}
+        title="Payment successfully completed"
+      />
     </Menu>
   );
 
@@ -123,10 +141,16 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
     <AppBar
       position={absolute ? "absolute" : navbarType}
       color="inherit"
-      sx={(theme) => navbar(theme, { transparentNavbar, absolute, light, darkMode })}
+      sx={(theme) =>
+        navbar(theme, { transparentNavbar, absolute, light, darkMode })
+      }
     >
       <Toolbar sx={navbarContainer}>
-        <Box color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
+        <Box
+          color="inherit"
+          mb={{ xs: 1, md: 0 }}
+          sx={(theme) => navbarRow(theme, { isMini })}
+        >
           <Box mr={{ xs: 0, xl: 8 }}>
             <Typography
               fontWeight="bold"
@@ -135,10 +159,18 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
               color={light ? "white" : "dark"}
               noWrap
             >
-              {route[route.length - 1].replace("-", " ")}
+              {t(
+                route[route.length - 1].replace("-", " ").toUpperCase() +
+                  "_CUSTOM_TRANS"
+              )}
             </Typography>
           </Box>
-          <IconButton sx={navbarDesktopMenu} onClick={handleMiniSidenav} size="small" disableRipple>
+          <IconButton
+            sx={navbarDesktopMenu}
+            onClick={handleMiniSidenav}
+            size="small"
+            disableRipple
+          >
             <Icon fontSize="medium" sx={iconsStyle}>
               {miniSidenav ? "menu_open" : "menu"}
             </Icon>

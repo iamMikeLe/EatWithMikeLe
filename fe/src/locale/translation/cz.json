@@ -1,5 +1,16 @@
 {
   "translation": {
-    "Welcome to React": "Vitej v reaktu"
+    "MEALS": "Pokrmy",
+    "VISITED_PLACES": "Navštívená místa",
+    "FOOD_PLANNER": "Jídelníček",
+    "ALL": "Vše",
+    "MINE": "Moje",
+    "FAVORITES": "Oblíbené",
+    "FOOD_SECTION": "Sekce Jídla",
+    "SEARCH_MEAL": "Hledat pokrm...",
+    "VIEW_MEAL": "Zobrazit",
+    "MEALS_CUSTOM_TRANS": "Pokrmy",
+    "PLACES_CUSTOM_TRANS": "Navštívená místa",
+    "PLANNER_CUSTOM_TRANS": "Jídelníček"
   }
 }

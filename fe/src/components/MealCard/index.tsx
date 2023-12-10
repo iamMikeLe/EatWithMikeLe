@@ -1,4 +1,5 @@
 // react-router-dom components
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 // @mui material components
@@ -23,6 +24,7 @@ interface Props {
 }
 
 function MealCard({ image, title, description, action }: Props): JSX.Element {
+  const { t } = useTranslation();
   return (
     <Card
       sx={{
@@ -69,7 +71,7 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
             size="small"
             color="info"
           >
-            {action.label}
+            {t("VIEW_MEAL")}
           </Button>
         </Box>
       </Box>

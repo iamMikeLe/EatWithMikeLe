@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // @mui material components
 import FaceIcon from "@mui/icons-material/Face";
@@ -16,6 +17,7 @@ import { fetchMealsAsync } from "./mealSlice";
 
 function TabsSection(): JSX.Element {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const [tabsOrientation, setTabsOrientation] = useState<
     "horizontal" | "vertical"
   >("horizontal");
@@ -52,15 +54,15 @@ function TabsSection(): JSX.Element {
       onChange={handleSetTabValue}
     >
       <Tab
-        label="All"
+        label={t("ALL")}
         icon={<FastfoodIcon fontSize="small" sx={{ mt: -0.25 }} />}
       />
       <Tab
-        label="Moi"
+        label={t("MINE")}
         icon={<FaceIcon fontSize="small" sx={{ mt: -0.25 }} />}
       />
       <Tab
-        label="Favorites"
+        label={t("FAVORITES")}
         icon={<FavoriteIcon fontSize="small" sx={{ mt: -0.25 }} />}
       />
     </Tabs>
