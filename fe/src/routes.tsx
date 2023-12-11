@@ -41,7 +41,7 @@ const routes = [
     type: "collapse",
     name: "ADD_MEAL",
     key: "addMeal",
-    route: "/meals/add-meal",
+    route: "/add-meal",
     component: <AddMeal />,
     noCollapse: true,
   },
