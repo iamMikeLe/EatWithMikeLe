@@ -1,4 +1,3 @@
-import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import { useTranslation } from "react-i18next";
 
@@ -11,19 +10,19 @@ import Typography from "components/Typography";
 function AddMealForm(): JSX.Element {
   const { t } = useTranslation();
   return (
-    <Card sx={{ overflow: "visible" }}>
+    <>
       <Box p={3}>
         <Typography variant="h5">{t("ADD_MEAL")}</Typography>
       </Box>
       <Box component="form" pb={3} px={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={3}>
             <FormField
               label={t("TITLE")}
               placeholder={t("TITLE_PLACEHOLDER")}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={9}>
             <FormField
               label={t("DESCRIPTION")}
               placeholder={t("DESCRIPTION_PLACEHOLDER")}
@@ -36,7 +35,7 @@ function AddMealForm(): JSX.Element {
           </Grid>
         </Grid>
       </Box>
-    </Card>
+    </>
   );
 }
 
