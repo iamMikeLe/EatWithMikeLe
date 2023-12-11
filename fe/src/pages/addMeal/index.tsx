@@ -5,11 +5,9 @@ import Grid from "@mui/material/Grid";
 // Material Dashboard 2 PRO React TS components
 import Box from "components/Box";
 
+import BannerImage from "layouts/BannerImage";
 import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
-
-// Images
-import backgroundImage from "assets/images/bg-profile.jpg";
 
 function AddMeal(): JSX.Element {
   return (
@@ -17,26 +15,7 @@ function AddMeal(): JSX.Element {
       <DashboardNavbar />
       <Box mb={2} />
       <Box position="relative" mb={5}>
-        <Box
-          display="flex"
-          alignItems="center"
-          position="relative"
-          minHeight="18.75rem"
-          borderRadius="xl"
-          sx={{
-            backgroundImage: ({
-              functions: { rgba, linearGradient },
-              palette: { gradients },
-            }) =>
-              `${linearGradient(
-                rgba(gradients.info.main, 0.6),
-                rgba(gradients.info.state, 0.6)
-              )}, url(${backgroundImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "50%",
-            overflow: "hidden",
-          }}
-        />
+        <BannerImage />
         <Card
           sx={{
             position: "relative",
