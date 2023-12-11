@@ -1,3 +1,4 @@
+import AddMeal from "pages/addMeal";
 import Meals from "pages/meals";
 
 // @mui icons
@@ -12,7 +13,7 @@ const routes = [
     type: "collapse",
     name: "MEALS",
     key: "meals",
-    route: "/pages/meals",
+    route: "/meals",
     component: <Meals />,
     icon: <LunchDiningIcon fontSize="medium" />,
     noCollapse: true,
@@ -21,7 +22,7 @@ const routes = [
     type: "collapse",
     name: "VISITED_PLACES",
     key: "places",
-    route: "/dashboards/places",
+    route: "/places",
     component: <Counter />,
     icon: <RestaurantMenuIcon fontSize="medium" />,
     noCollapse: true,
@@ -30,9 +31,17 @@ const routes = [
     type: "collapse",
     name: "FOOD_PLANNER",
     key: "planner",
-    route: "/applications/planner",
+    route: "/planner",
     component: <Meals />,
     icon: <CalendarMonthIcon fontSize="medium" />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "ADD_MEAL",
+    key: "addMeal",
+    route: "/meals/add-meal",
+    component: <AddMeal />,
     noCollapse: true,
   },
 ];
