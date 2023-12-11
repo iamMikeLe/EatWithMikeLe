@@ -11,6 +11,8 @@
     "VIEW_MEAL": "View Meal",
     "MEALS_CUSTOM_TRANS": "Meals",
     "PLACES_CUSTOM_TRANS": "Visited Places",
-    "PLANNER_CUSTOM_TRANS": "Food Planner"
+    "PLANNER_CUSTOM_TRANS": "Food Planner",
+    "ADD MEAL_CUSTOM_TRANS": "Add Meal",
+    "ADD_MEAL": "Add Meal"
   }
 }

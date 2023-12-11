@@ -8,6 +8,7 @@ import Box from "components/Box";
 import BannerImage from "layouts/BannerImage";
 import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
+import AddMealForm from "./AddMealForm";
 
 function AddMeal(): JSX.Element {
   return (
@@ -28,7 +29,7 @@ function AddMeal(): JSX.Element {
           <Box p={2} sx={{ marginTop: 6, marginBottom: 6 }}>
             <Grid container spacing={6}>
               <Grid item xs={12} md={12} xl={12}>
-                add meal section
+                <AddMealForm />
               </Grid>
             </Grid>
           </Box>

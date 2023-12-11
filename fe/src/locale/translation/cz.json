@@ -11,6 +11,8 @@
     "VIEW_MEAL": "Zobrazit",
     "MEALS_CUSTOM_TRANS": "Pokrmy",
     "PLACES_CUSTOM_TRANS": "Navštívená místa",
-    "PLANNER_CUSTOM_TRANS": "Jídelníček"
+    "PLANNER_CUSTOM_TRANS": "Jídelníček",
+    "ADD MEAL_CUSTOM_TRANS": "Přidat pokrm",
+    "ADD_MEAL": "Přidat pokrm"
   }
 }
