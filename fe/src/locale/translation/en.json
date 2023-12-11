@@ -1,6 +1,10 @@
 {
   "translation": {
     "MEALS": "Meals",
+    "TITLE": "Title",
+    "TITLE_PLACEHOLDER": "e.g. Tasty Spaghetti with Tomato Sauce and Basil",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_PLACEHOLDER": "e.g. A super-tasty Schnitzel - just awesome!",
     "VISITED_PLACES": "Visited Places",
     "FOOD_PLANNER": "Food Planner",
     "ALL": "All",

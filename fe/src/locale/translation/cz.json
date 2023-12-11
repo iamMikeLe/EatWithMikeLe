@@ -1,6 +1,10 @@
 {
   "translation": {
     "MEALS": "Pokrmy",
+    "TITLE": "Název",
+    "TITLE_PLACEHOLDER": "např. Špagety s rajčatovou omáčkou",
+    "DESCRIPTION": "Popis",
+    "DESCRIPTION_PLACEHOLDER": "např. Chutné špagety s rajčatovou omáčkou a bazalkou",
     "VISITED_PLACES": "Navštívená místa",
     "FOOD_PLANNER": "Jídelníček",
     "ALL": "Vše",
