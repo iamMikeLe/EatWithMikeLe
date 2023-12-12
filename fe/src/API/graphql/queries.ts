@@ -1,6 +1,7 @@
 import { GraphQLClient, gql } from "graphql-request";
 
-const client = new GraphQLClient("http://localhost:9000/graphql");
+const apiUrl = import.meta.env.VITE_API_URL || "";
+const client = new GraphQLClient(apiUrl);
 
 export const fetchMeals = () => {
   return client.request(gql`
