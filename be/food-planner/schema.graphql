@@ -23,7 +23,7 @@ type User {
 
 type Meal {
   mealId: String!
-  imageUri: String!
+  imageUrl: String!
   title: String!
   description: String!
   tags: [String]

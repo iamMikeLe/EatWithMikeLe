@@ -44,7 +44,7 @@ export const dummyMeal = {
 export const dummyMeals = [
   {
     mealId: "1456456",
-    imageUrl: "homeDecor2",
+    imageUrl: "https://picsum.photos/320/190",
     title: "Sandwitch",
     description: "yummy sandwitch",
     tag: ["tag1", "tag2", "tag3"],

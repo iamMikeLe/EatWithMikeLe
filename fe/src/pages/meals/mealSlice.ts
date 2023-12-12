@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchMeals } from "API/MealsAPI";
+import { fetchMeals } from "API/graphql/queries";
 import { RootState } from "../../store/store";
 
 export type MealData = {
@@ -24,10 +24,15 @@ const initialState: MealsState = {
 };
 
 export const fetchMealsAsync = createAsyncThunk(
-  "counter/fetchMeals",
+  "meals/fetchMeals",
   async () => {
-    const response = await fetchMeals();
-    return response.data;
+    try {
+      const { meals } = (await fetchMeals()) as { meals: MealData[] };
+      return meals;
+    } catch (error: any) {
+      console.log("handle error in future, toast or sth", error);
+      throw error;
+    }
   }
 );
 
@@ -43,6 +48,9 @@ export const mealsSlice = createSlice({
       })
       .addCase(fetchMealsAsync.fulfilled, (state, action) => {
         state.value = action.payload;
+      })
+      .addCase(fetchMealsAsync.rejected, (state) => {
+        state.value = [];
       });
   },
 });

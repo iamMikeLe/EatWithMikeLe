@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   decrement,
   increment,
-  incrementAsync,
   incrementByAmount,
   incrementIfOdd,
   selectCount,
@@ -52,9 +51,6 @@ export function Counter() {
             />
             <button onClick={() => dispatch(incrementByAmount(incrementValue))}>
               Add Amount
-            </button>
-            <button onClick={() => dispatch(incrementAsync(incrementValue))}>
-              Add Async
             </button>
             <button onClick={() => dispatch(incrementIfOdd(incrementValue))}>
               Add If Odd
