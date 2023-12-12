@@ -1,44 +1,51 @@
 type Query {
-  user(id: ID!): User,
-  users: [User!],
+  user(id: ID!): User
+  users: [User!]
   meal(id: ID!): Meal
-  meals: [Meal!],
-  place(id: ID!): Place,
+  meals: [Meal!]
+  place(id: ID!): Place
   places: [Place!]
 }
 
 type User {
-  userId: String!,
-  firstName: String,
-  lastName: String,
-  email: String!,
-  password: String,
-  avatar: String,
-  favorites: [String],
-  learned: [String],
-  meals: [Meal!]!,
+  userId: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  avatar: String!
+  favorites: [String]
+  learned: [String]
+  meals: [Meal!]!
+  createdAt: String!
+  modifiedAt: String!
 }
 
 type Meal {
-  mealId: String!,
-  name: String,
-  description: String,
-  tags: [String],
-  author: String!,
-  authorId: String!,
+  mealId: String!
+  imageUri: String!
+  title: String!
+  description: String!
+  tags: [String]
+  author: String!
+  authorId: String!
+  createdAt: String!
+  modifiedAt: String!
 }
 
 type Place {
-  placeId: String!,
-  name: String!,
-  description: String,
-  tags: [String],
-  author: String!,
-  authorId: String!,
-  coords: Coords!,
+  placeId: String!
+  name: String!
+  description: String!
+  tags: [String]
+  author: String!
+  authorId: String!
+  coords: Coords!
+  createdAt: String!
+  modifiedAt: String!
 }
 
 type Coords {
-  longitude: String!,
+  longitude: String!
   latitude: String!
 }
