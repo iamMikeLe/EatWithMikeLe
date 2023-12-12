@@ -36,7 +36,7 @@ import {
 } from "context";
 
 // Declaring prop types for DashboardNavbar
-interface Props {
+type Props = {
   absolute?: boolean;
   light?: boolean;
   isMini?: boolean;

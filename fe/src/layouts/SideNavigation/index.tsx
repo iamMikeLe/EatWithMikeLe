@@ -31,7 +31,7 @@ import {
 } from "context";
 
 // Declaring props types for Sidenav
-interface Props {
+type Props = {
   color?:
     | "primary"
     | "secondary"
@@ -56,7 +56,7 @@ interface Props {
         }[];
   }[];
   [key: string]: any;
-}
+};
 
 function SideNavigation({
   color,

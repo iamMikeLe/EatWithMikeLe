@@ -1,10 +1,10 @@
 import Input from "components/Input";
 
 // Declaring props types for FormField
-interface Props {
+type Props = {
   label?: string;
   [key: string]: any;
-}
+};
 
 function FormField({ label, ...rest }: Props): JSX.Element {
   return (

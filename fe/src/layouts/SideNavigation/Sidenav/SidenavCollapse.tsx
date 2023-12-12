@@ -23,7 +23,7 @@ import {
 import { useMaterialUIController } from "context";
 
 // Declaring props types for SidenavCollapse
-interface Props {
+type Props = {
   icon: ReactNode;
   name: string;
   children?: ReactNode;

@@ -2,21 +2,21 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchMeals } from "API/MealsAPI";
 import { RootState } from "../../store/store";
 
-export interface MealData {
+export type MealData = {
   mealId: string;
   imageUrl: string;
   title: string;
   description: string;
-  action: {
-    route: string;
-    color: "info";
-    label: string;
-  };
-}
+  tags: string[] | null;
+  author: string | null;
+  authorId: string;
+  createdAt: string | null;
+  modifiedAt: string | null;
+};
 
-export interface MealsState {
+export type MealsState = {
   value: MealData[] | null;
-}
+};
 
 // Meal Slice
 const initialState: MealsState = {

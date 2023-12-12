@@ -4,7 +4,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Box from "components/Box";
 import MealCard from "components/MealCard";
 import { useAppSelector } from "store/hooks";
-import { selectMeals } from "./mealSlice";
+import { MealData, selectMeals } from "./mealSlice";
 
 function MealsSection(): JSX.Element {
   const meals = useAppSelector(selectMeals);
@@ -39,7 +39,7 @@ function MealsSection(): JSX.Element {
         {meals && meals.length > 0 && (
           <>
             {/* Your existing code */}
-            {meals.map((meal) => (
+            {meals.map((meal: MealData) => (
               <Grid item xs={12} md={6} xl={3} key={meal.mealId}>
                 <MealCard
                   image={meal.imageUrl}

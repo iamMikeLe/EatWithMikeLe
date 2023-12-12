@@ -56,7 +56,7 @@ export default function App() {
             );
           }
         })}
-        <Route path="*" element={<Navigate to="/pages/meals" />} />
+        <Route path="*" element={<Navigate to="/meals" />} />
       </Routes>
     </ThemeProvider>
   );

@@ -12,18 +12,14 @@ import Button from "components/Button";
 import Typography from "components/Typography";
 
 // Declaring props types for DefaultProjectCard
-interface Props {
+type Props = {
   image: string;
   title: string;
   description: string;
-  action: {
-    route: string;
-    label: string;
-  };
   [key: string]: any;
-}
+};
 
-function MealCard({ image, title, description, action }: Props): JSX.Element {
+function MealCard({ image, title, description }: Props): JSX.Element {
   const { t } = useTranslation();
   return (
     <Card
@@ -66,7 +62,7 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Button
             component={Link}
-            to={action.route}
+            to="/meal/dynamicIDForFuture"
             variant="outlined"
             size="small"
             color="info"

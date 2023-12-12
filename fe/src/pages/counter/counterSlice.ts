@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchCount } from "API/MealsAPI";
 import { AppThunk, RootState } from "../../store/store";
 
-export interface CounterState {
+export type CounterState = {
   value: number;
   status: "idle" | "loading" | "failed";
-}
+};
 
 const initialState: CounterState = {
   value: 0,

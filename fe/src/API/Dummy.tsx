@@ -11,11 +11,6 @@ export const dummyMeals = [
     authorId: "123456789",
     createdAt: "2021-10-10",
     modifiedAt: "2021-10-10",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456457",
@@ -27,11 +22,6 @@ export const dummyMeals = [
     authorId: "123456780",
     createdAt: "2021-10-11",
     modifiedAt: "2021-10-11",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456458",
@@ -43,11 +33,6 @@ export const dummyMeals = [
     authorId: "123456781",
     createdAt: "2021-10-12",
     modifiedAt: "2021-10-12",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456459",
@@ -59,11 +44,6 @@ export const dummyMeals = [
     authorId: "123456782",
     createdAt: "2021-10-13",
     modifiedAt: "2021-10-13",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456460",
@@ -75,11 +55,6 @@ export const dummyMeals = [
     authorId: "123456783",
     createdAt: "2021-10-14",
     modifiedAt: "2021-10-14",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456461",
@@ -91,11 +66,6 @@ export const dummyMeals = [
     authorId: "123456784",
     createdAt: "2021-10-15",
     modifiedAt: "2021-10-15",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456462",
@@ -107,11 +77,6 @@ export const dummyMeals = [
     authorId: "123456785",
     createdAt: "2021-10-16",
     modifiedAt: "2021-10-16",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456463",
@@ -123,11 +88,6 @@ export const dummyMeals = [
     authorId: "123456786",
     createdAt: "2021-10-17",
     modifiedAt: "2021-10-17",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
   {
     mealId: "1456464",
@@ -139,10 +99,5 @@ export const dummyMeals = [
     authorId: "123456787",
     createdAt: "2021-10-18",
     modifiedAt: "2021-10-18",
-    action: {
-      route: "/pages/profile/profile-overview",
-      color: "info" as const,
-      label: "view meal",
-    },
   },
 ];
