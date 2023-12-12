@@ -1,4 +1,5 @@
 // react-router-dom components
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 // @mui material components
@@ -11,28 +12,15 @@ import Button from "components/Button";
 import Typography from "components/Typography";
 
 // Declaring props types for DefaultProjectCard
-interface Props {
+type Props = {
   image: string;
   title: string;
   description: string;
-  action: {
-    route: string;
-    color:
-      | "primary"
-      | "secondary"
-      | "info"
-      | "success"
-      | "warning"
-      | "error"
-      | "light"
-      | "dark"
-      | "white";
-    label: string;
-  };
   [key: string]: any;
-}
+};
 
-function MealCard({ image, title, description, action }: Props): JSX.Element {
+function MealCard({ image, title, description }: Props): JSX.Element {
+  const { t } = useTranslation();
   return (
     <Card
       sx={{
@@ -58,7 +46,12 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
         />
       </Box>
       <Box mt={1} mx={0.5}>
-        <Typography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
+        <Typography
+          variant="button"
+          fontWeight="regular"
+          color="text"
+          textTransform="capitalize"
+        >
           {title}
         </Typography>
         <Box mb={3} lineHeight={0}>
@@ -69,12 +62,12 @@ function MealCard({ image, title, description, action }: Props): JSX.Element {
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Button
             component={Link}
-            to={action.route}
+            to="/meal/dynamicIDForFuture"
             variant="outlined"
             size="small"
-            color={action.color}
+            color="info"
           >
-            {action.label}
+            {t("VIEW_MEAL")}
           </Button>
         </Box>
       </Box>

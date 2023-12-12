@@ -1,0 +1,22 @@
+{
+  "translation": {
+    "MEALS": "Meals",
+    "TITLE": "Title",
+    "TITLE_PLACEHOLDER": "e.g. Tasty Spaghetti with Tomato Sauce and Basil",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_PLACEHOLDER": "e.g. A super-tasty Schnitzel - just awesome!",
+    "VISITED_PLACES": "Visited Places",
+    "FOOD_PLANNER": "Food Planner",
+    "ALL": "All",
+    "MINE": "Moi",
+    "FAVORITES": "Favorites",
+    "FOOD_SECTION": "Food Section",
+    "SEARCH_MEAL": "Search for Meal...",
+    "VIEW_MEAL": "View Meal",
+    "MEALS_CUSTOM_TRANS": "Meals",
+    "PLACES_CUSTOM_TRANS": "Visited Places",
+    "PLANNER_CUSTOM_TRANS": "Food Planner",
+    "ADD MEAL_CUSTOM_TRANS": "Add Meal",
+    "ADD_MEAL": "Add Meal"
+  }
+}

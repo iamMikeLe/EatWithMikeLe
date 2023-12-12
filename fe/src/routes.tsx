@@ -1,38 +1,48 @@
+import AddMeal from "pages/addMeal";
 import Meals from "pages/meals";
 
 // @mui icons
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import Icon from "@mui/material/Icon";
+import { Counter } from "pages/counter/Counter";
 
+// TODO - fix type collapse, change it to different name? or just add another type for non displaying menu
 const routes = [
-  { type: "title", title: "Food", key: "title-docs" },
+  { type: "title", title: "FOOD_SECTION", key: "title-docs" },
   {
     type: "collapse",
-    name: "Meals",
+    name: "MEALS",
     key: "meals",
-    route: "/pages/meals",
+    route: "/meals",
     component: <Meals />,
     icon: <LunchDiningIcon fontSize="medium" />,
     noCollapse: true,
   },
   {
     type: "collapse",
-    name: "Visited places",
+    name: "VISITED_PLACES",
     key: "places",
-    route: "/dashboards/analytics",
-    component: <Meals />,
+    route: "/places",
+    component: <Counter />,
     icon: <RestaurantMenuIcon fontSize="medium" />,
     noCollapse: true,
   },
   {
     type: "collapse",
-    name: "Food planner",
+    name: "FOOD_PLANNER",
     key: "planner",
-    route: "/applications/calendar",
+    route: "/planner",
     component: <Meals />,
     icon: <CalendarMonthIcon fontSize="medium" />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "ADD_MEAL",
+    key: "addMeal",
+    route: "/add-meal",
+    component: <AddMeal />,
     noCollapse: true,
   },
 ];
