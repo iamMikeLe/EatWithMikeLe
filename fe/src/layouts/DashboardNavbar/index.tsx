@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-// react-router components
 import { Link, useLocation } from "react-router-dom";
 
 // @material-ui core components
@@ -11,11 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 
-// Material Dashboard 2 PRO React TS components
-import Badge from "components/Badge";
-import Box from "components/Box";
-import NotificationItem from "components/NotificationItem";
-import Typography from "components/Typography";
+import { Badge, Box, NotificationItem, Typography } from "components";
 
 // Custom styles for DashboardNavbar
 import {
@@ -40,7 +34,7 @@ type Props = {
   absolute?: boolean;
   light?: boolean;
   isMini?: boolean;
-}
+};
 
 function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
   const [navbarType, setNavbarType] = useState<

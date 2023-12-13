@@ -7,8 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
+import { Box } from "components";
 
 // Custom styles for the SidenavCollapse
 import {
@@ -31,7 +30,7 @@ type Props = {
   noCollapse?: Boolean;
   open?: Boolean;
   [key: string]: any;
-}
+};
 
 function SidenavCollapse({
   icon,
@@ -43,7 +42,8 @@ function SidenavCollapse({
   ...rest
 }: Props): JSX.Element {
   const [controller] = useMaterialUIController();
-  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } = controller;
+  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } =
+    controller;
 
   return (
     <>
@@ -51,14 +51,27 @@ function SidenavCollapse({
         <Box
           {...rest}
           sx={(theme: any) =>
-            collapseItem(theme, { active, transparentSidenav, whiteSidenav, darkMode })
+            collapseItem(theme, {
+              active,
+              transparentSidenav,
+              whiteSidenav,
+              darkMode,
+            })
           }
         >
           <ListItemIcon
-            sx={(theme) => collapseIconBox(theme, { transparentSidenav, whiteSidenav, darkMode })}
+            sx={(theme) =>
+              collapseIconBox(theme, {
+                transparentSidenav,
+                whiteSidenav,
+                darkMode,
+              })
+            }
           >
             {typeof icon === "string" ? (
-              <Icon sx={(theme) => collapseIcon(theme, { active })}>{icon}</Icon>
+              <Icon sx={(theme) => collapseIcon(theme, { active })}>
+                {icon}
+              </Icon>
             ) : (
               icon
             )}

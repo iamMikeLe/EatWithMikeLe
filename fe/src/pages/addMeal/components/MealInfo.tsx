@@ -4,11 +4,7 @@ import { useTranslation } from "react-i18next";
 import Autocomplete from "@mui/material/Autocomplete";
 import Grid from "@mui/material/Grid";
 
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
-
-import Input from "components/Input";
-import Typography from "components/Typography";
+import { Box, Input, Typography } from "components";
 
 function ProductInfo(): JSX.Element {
   const { t } = useTranslation();

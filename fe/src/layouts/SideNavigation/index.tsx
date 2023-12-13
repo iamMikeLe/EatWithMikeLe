@@ -1,6 +1,4 @@
 import { ReactNode, useEffect, useState } from "react";
-
-// react-router-dom components
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -10,9 +8,7 @@ import Icon from "@mui/material/Icon";
 import Link from "@mui/material/Link";
 import List from "@mui/material/List";
 
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
-import Typography from "components/Typography";
+import { Box, Typography } from "components";
 
 // Material Dashboard 2 PRO React TS examples components
 import SidenavCollapse from "./Sidenav/SidenavCollapse";

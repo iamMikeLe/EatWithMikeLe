@@ -4,11 +4,7 @@ import { useTranslation } from "react-i18next";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
-import Button from "components/Button";
-import Typography from "components/Typography";
-
+import { Box, Button, Typography } from "components";
 import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
 

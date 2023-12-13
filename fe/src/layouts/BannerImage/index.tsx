@@ -1,5 +1,4 @@
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
+import { Box } from "components";
 
 // Images
 import backgroundImage from "assets/images/bg-profile.jpg";

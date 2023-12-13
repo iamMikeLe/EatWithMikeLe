@@ -6,9 +6,7 @@ import AppBar from "@mui/material/AppBar";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
-import Input from "components/Input";
+import { Box, Input } from "components";
 
 import BannerImage from "layouts/BannerImage";
 import DashboardLayout from "layouts/DashboardLayout";

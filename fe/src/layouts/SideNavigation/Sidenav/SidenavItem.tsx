@@ -7,8 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { Theme } from "@mui/material/styles";
 
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
+import { Box } from "components";
 
 // Custom styles for the SidenavItem
 import { item, itemArrow, itemContent } from "./styles/sidenavItem";

@@ -1,10 +1,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
-import Dropzone from "components/Dropzone";
-import Typography from "components/Typography";
+import { Box, Dropzone, Typography } from "components";
 
 function Media(): JSX.Element {
   const { t } = useTranslation();

@@ -1,8 +1,8 @@
 import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
 
-import Box from "components/Box";
-import MealCard from "components/MealCard";
+import { Box, MealCard } from "components";
+
 import { useAppSelector } from "store/hooks";
 import { MealData, selectMeals } from "./mealSlice";
 

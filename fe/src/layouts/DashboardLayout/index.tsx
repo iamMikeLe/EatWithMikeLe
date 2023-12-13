@@ -1,10 +1,6 @@
+import { Box } from "components";
 import { ReactNode, useEffect } from "react";
-
-// react-router-dom components
 import { useLocation } from "react-router-dom";
-
-// Material Dashboard 2 PRO React TS components
-import Box from "components/Box";
 
 // Material Dashboard 2 PRO React context
 import { setLayout, useMaterialUIController } from "context";
