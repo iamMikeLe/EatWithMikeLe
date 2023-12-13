@@ -14,8 +14,8 @@ import DashboardNavbar from "layouts/DashboardNavbar";
 
 //Meals components
 import { useAppDispatch } from "store/hooks";
-import MealsSection from "./MealsSection";
-import TabsSection from "./TabsSection";
+import TabsSection from "./components/TabsSection";
+import MealsSection from "./components/MealsSection";
 import { fetchMealsAsync } from "./mealSlice";
 
 function Meals(): JSX.Element {

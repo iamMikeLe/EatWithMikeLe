@@ -13,7 +13,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 //Meals components
 import { useAppDispatch } from "store/hooks";
-import { fetchMealsAsync } from "./mealSlice";
+import { fetchMealsAsync } from "../mealSlice";
 
 function TabsSection(): JSX.Element {
   const dispatch = useAppDispatch();

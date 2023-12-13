@@ -4,7 +4,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { Box, MealCard } from "components";
 
 import { useAppSelector } from "store/hooks";
-import { MealData, selectMeals } from "./mealSlice";
+import { MealData, selectMeals } from "../mealSlice";
 
 function MealsSection(): JSX.Element {
   const meals = useAppSelector(selectMeals);
