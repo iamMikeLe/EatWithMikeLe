@@ -1,18 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchMeals } from "API/graphql/queries";
+import { MealData } from "types/meal-types";
 import { RootState } from "../../store/store";
-
-export type MealData = {
-  mealId: string;
-  imageUrl: string;
-  title: string;
-  description: string;
-  tags: string[] | null;
-  author: string | null;
-  authorId: string;
-  createdAt: string | null;
-  modifiedAt: string | null;
-};
 
 export type MealsState = {
   value: MealData[] | null;
@@ -36,7 +25,7 @@ export const fetchMealsAsync = createAsyncThunk(
   }
 );
 
-export const mealsSlice = createSlice({
+export const mealsSlice: any = createSlice({
   name: "meals",
   initialState,
   reducers: {},
@@ -46,9 +35,12 @@ export const mealsSlice = createSlice({
         // resetting state to trigger loading
         state.value = null;
       })
-      .addCase(fetchMealsAsync.fulfilled, (state, action) => {
-        state.value = action.payload;
-      })
+      .addCase(
+        fetchMealsAsync.fulfilled,
+        (state, action: PayloadAction<MealData[]>) => {
+          state.value = action.payload;
+        }
+      )
       .addCase(fetchMealsAsync.rejected, (state) => {
         state.value = [];
       });
