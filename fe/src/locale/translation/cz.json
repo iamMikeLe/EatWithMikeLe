@@ -17,6 +17,12 @@
     "PLACES_CUSTOM_TRANS": "Navštívená místa",
     "PLANNER_CUSTOM_TRANS": "Jídelníček",
     "ADD MEAL_CUSTOM_TRANS": "Přidat pokrm",
-    "ADD_MEAL": "Přidat pokrm"
+    "ADD_MEAL": "Přidat pokrm",
+    "MEAL_INFO": "Informace o pokrmu",
+    "MEAL_UPLOAD": "Nahrát obrázky",
+    "MEAL_IMAGES": "Nahrané obrázky",
+    "ADD": "Přidat",
+    "ADD_NEW_MEAL": "Přidat nový pokrm",
+    "ADD_NEW_MEAL_DESCRIPTION": "Vyplňte následující informace o pokrmu"
   }
 }

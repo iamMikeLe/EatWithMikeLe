@@ -17,6 +17,12 @@
     "PLACES_CUSTOM_TRANS": "Visited Places",
     "PLANNER_CUSTOM_TRANS": "Food Planner",
     "ADD MEAL_CUSTOM_TRANS": "Add Meal",
-    "ADD_MEAL": "Add Meal"
+    "ADD_MEAL": "Add Meal",
+    "MEAL_INFO": "Meal information",
+    "MEAL_UPLOAD": "Upload images",
+    "MEAL_IMAGES": "Uploaded images",
+    "ADD": "Add",
+    "ADD_NEW_MEAL": "Add New Meal",
+    "ADD_NEW_MEAL_DESCRIPTION": "Fill in the form below to add a new meal."
   }
 }

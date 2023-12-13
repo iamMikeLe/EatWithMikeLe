@@ -1,39 +1,64 @@
+import { useTranslation } from "react-i18next";
+
 // @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
 // Material Dashboard 2 PRO React TS components
 import Box from "components/Box";
+import Button from "components/Button";
+import Typography from "components/Typography";
 
-import BannerImage from "layouts/BannerImage";
 import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
-import AddMealForm from "./AddMealForm";
+
+// page components
+import MealInfo from "./components/MealInfo";
+import MediaUpload from "./components/MediaUpload";
 
 function AddMeal(): JSX.Element {
+  const { t } = useTranslation();
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Box mb={2} />
-      <Box position="relative" mb={5}>
-        <BannerImage />
-        <Card
-          sx={{
-            position: "relative",
-            mt: -8,
-            mx: 3,
-            py: 2,
-            px: 2,
-          }}
-        >
-          <Box p={2} sx={{ marginTop: 6, marginBottom: 6 }}>
-            <Grid container spacing={6}>
-              <Grid item xs={12} md={12} xl={12}>
-                <AddMealForm />
-              </Grid>
-            </Grid>
-          </Box>
-        </Card>
+      <Box mt={5} mb={9}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} lg={8}>
+            <Box mt={6} mb={8} textAlign="center">
+              <Box mb={1}>
+                <Typography variant="h3" fontWeight="bold">
+                  {t("ADD_NEW_MEAL")}
+                </Typography>
+              </Box>
+              <Typography variant="h5" fontWeight="regular" color="secondary">
+                {t("ADD_NEW_MEAL_DESCRIPTION")}
+              </Typography>
+            </Box>
+            <Card>
+              <Box p={2}>
+                <Box>
+                  <MealInfo />
+                  <MediaUpload />
+                  <Box
+                    mt={3}
+                    width="100%"
+                    display="flex"
+                    justifyContent="space-between"
+                  >
+                    <Box />
+                    <Button
+                      variant="gradient"
+                      color="dark"
+                      onClick={() => console.log("send")}
+                    >
+                      {t("ADD")}
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
+            </Card>
+          </Grid>
+        </Grid>
       </Box>
     </DashboardLayout>
   );

@@ -18,6 +18,7 @@
     "@mui/styled-engine": "5.12.3",
     "@reduxjs/toolkit": "^2.0.1",
     "chroma-js": "2.4.2",
+    "dropzone": "^6.0.0-beta.2",
     "formik": "2.2.9",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@types/chroma-js": "2.4.0",
+    "@types/dropzone": "^5.7.8",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
