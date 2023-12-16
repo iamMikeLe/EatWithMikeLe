@@ -2,13 +2,12 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware as apolloMiddleware } from "@apollo/server/express4";
 import bodyParser from "body-parser";
 import cors from "cors";
+import "dotenv/config";
 
 import express from "express";
 import { readFile } from "node:fs/promises";
 import HttpError from "./models/http-error.js";
 import { resolvers } from "./resolvers.js";
-
-const PORT = 9000;
 
 const app = express();
 app.use(cors(), express.json(), bodyParser.json());
@@ -25,7 +24,9 @@ app.use((_req, _res, _next) => {
   throw error;
 });
 
-app.listen({ port: PORT }, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`GraphQL endpoint: http://localhost:${PORT}/graphql`);
+app.listen({ port: process.env.APP_PORT }, () => {
+  console.log(`Server running on port ${process.env.APP_PORT}`);
+  console.log(
+    `GraphQL endpoint: http://localhost:${process.env.APP_PORT}/graphql`
+  );
 });
