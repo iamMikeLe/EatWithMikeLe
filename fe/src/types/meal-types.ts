@@ -9,3 +9,10 @@ export type MealData = {
   createdAt: string | null;
   modifiedAt: string | null;
 };
+
+export type MealFormValue = {
+  imageUrl: string;
+  title: string;
+  description: string;
+  tags: string[] | null;
+};

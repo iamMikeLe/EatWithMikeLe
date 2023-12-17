@@ -14,6 +14,8 @@ import MediaUpload from "./components/MediaUpload";
 
 function AddMeal(): JSX.Element {
   const { t } = useTranslation();
+
+  //TODO - fire function that adds meals form value from redux to db
   return (
     <DashboardLayout>
       <DashboardNavbar />
