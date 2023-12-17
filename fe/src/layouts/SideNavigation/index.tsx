@@ -225,59 +225,26 @@ function SideNavigation({
       href,
       route,
     }: any) => {
-      let returnValue;
-
+      if (type === "noDisplay") {
+        return null;
+      }
       if (type === "collapse") {
-        if (href) {
-          returnValue = (
-            <Link
-              href={href}
-              key={key}
-              target="_blank"
-              rel="noreferrer"
-              sx={{ textDecoration: "none" }}
-            >
-              <SidenavCollapse
-                name={t(name)}
-                icon={icon}
-                active={key === collapseName}
-                noCollapse={noCollapse}
-              />
-            </Link>
-          );
-        } else if (noCollapse && route) {
-          returnValue = (
-            <NavLink to={route} key={key}>
-              <SidenavCollapse
-                name={t(name)}
-                icon={icon}
-                noCollapse={noCollapse}
-                active={key === collapseName}
-              >
-                {collapse ? renderCollapse(collapse) : null}
-              </SidenavCollapse>
-            </NavLink>
-          );
-        } else {
-          returnValue = (
+        return (
+          <NavLink to={route} key={key}>
             <SidenavCollapse
-              key={key}
               name={t(name)}
               icon={icon}
+              noCollapse={noCollapse}
               active={key === collapseName}
-              open={openCollapse === key}
-              onClick={() =>
-                openCollapse === key
-                  ? setOpenCollapse(false)
-                  : setOpenCollapse(key)
-              }
             >
               {collapse ? renderCollapse(collapse) : null}
             </SidenavCollapse>
-          );
-        }
-      } else if (type === "title") {
-        returnValue = (
+          </NavLink>
+        );
+      }
+
+      if (type === "title") {
+        return (
           <Typography
             key={key}
             color={textColor}
@@ -293,8 +260,10 @@ function SideNavigation({
             {t(title)}
           </Typography>
         );
-      } else if (type === "divider") {
-        returnValue = (
+      }
+
+      if (type === "divider") {
+        return (
           <Divider
             key={key}
             light={
@@ -304,8 +273,6 @@ function SideNavigation({
           />
         );
       }
-
-      return returnValue;
     }
   );
 

@@ -5,13 +5,12 @@ import Meals from "pages/meals";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import { Counter } from "pages/counter/Counter";
 
 // TODO - fix type collapse, change it to different name? or just add another type for non displaying menu
 const routes = [
   { type: "title", title: "FOOD_SECTION", key: "title-docs" },
   {
-    type: "collapse",
+    type: "noDisplay",
     name: "MEALS",
     key: "meal",
     route: "/meal/:id",
@@ -33,7 +32,7 @@ const routes = [
     name: "VISITED_PLACES",
     key: "places",
     route: "/places",
-    component: <Counter />,
+    component: <Meals />,
     icon: <RestaurantMenuIcon fontSize="medium" />,
     noCollapse: true,
   },
