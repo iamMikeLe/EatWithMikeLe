@@ -31,7 +31,6 @@ export const createMeal = async ({
 
   try {
     await createdMeal.save();
-    console.log("create meal success", createdMeal.toObject({ getters: true }));
   } catch (err) {
     const error = new HttpError("constants.CREATE_MEAL_FAILED", 500);
     console.log("error", error);
