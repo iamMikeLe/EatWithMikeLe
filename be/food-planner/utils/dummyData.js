@@ -33,7 +33,7 @@ export const dummyUsers = [
 ];
 
 export const dummyMeal = {
-  mealId: "123441",
+  id: "123441",
   name: "spaghetti",
   description: "spaghetti yummy",
   tags: ["pasta", "sugar"],
@@ -43,7 +43,7 @@ export const dummyMeal = {
 
 export const dummyMeals = [
   {
-    mealId: "1456456",
+    id: "1456456",
     imageUrl: "https://picsum.photos/320/190",
     title: "Sandwitch",
     description: "yummy sandwitch",
@@ -54,7 +54,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-10",
   },
   {
-    mealId: "1456457",
+    id: "1456457",
     imageUrl: "https://picsum.photos/320/190",
     title: "Pizza",
     description: "Delicious pizza",
@@ -65,7 +65,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-11",
   },
   {
-    mealId: "1456458",
+    id: "1456458",
     imageUrl: "https://picsum.photos/320/190",
     title: "Burger",
     description: "Tasty burger",
@@ -76,7 +76,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-12",
   },
   {
-    mealId: "1456459",
+    id: "1456459",
     imageUrl: "https://picsum.photos/320/190",
     title: "Pasta",
     description: "Creamy pasta",
@@ -87,7 +87,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-13",
   },
   {
-    mealId: "1456460",
+    id: "1456460",
     imageUrl: "https://picsum.photos/320/190",
     title: "Salad",
     description: "Healthy salad",
@@ -98,7 +98,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-14",
   },
   {
-    mealId: "1456461",
+    id: "1456461",
     imageUrl: "https://picsum.photos/320/190",
     title: "Steak",
     description: "Juicy steak",
@@ -109,7 +109,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-15",
   },
   {
-    mealId: "1456462",
+    id: "1456462",
     imageUrl: "https://picsum.photos/320/190",
     title: "Fish",
     description: "Grilled fish",
@@ -120,7 +120,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-16",
   },
   {
-    mealId: "1456463",
+    id: "1456463",
     imageUrl: "https://picsum.photos/320/190",
     title: "Chicken",
     description: "Roasted chicken",
@@ -131,7 +131,7 @@ export const dummyMeals = [
     modifiedAt: "2021-10-17",
   },
   {
-    mealId: "1456464",
+    id: "1456464",
     imageUrl: "https://picsum.photos/320/190",
     title: "Rice",
     description: "Fried rice",

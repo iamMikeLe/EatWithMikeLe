@@ -1,12 +1,12 @@
+import { getAllMeals } from "./controllers/meal-controller.js";
 import {
   dummyMeal,
   dummyMeals,
   dummyPlace,
   dummyPlaces,
   dummyUser,
-  dummyUsers
+  dummyUsers,
 } from "./utils/dummyData.js";
-
 
 export const resolvers = {
   Query: {
@@ -20,7 +20,7 @@ export const resolvers = {
 
     meal: (_root, { id }) => dummyMeal,
 
-    meals: () => dummyMeals,
+    meals: () => getAllMeals(),
 
     place: (_root, { id }) => dummyPlace,
 
