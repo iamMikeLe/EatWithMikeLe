@@ -40,7 +40,7 @@ function MealsSection(): JSX.Element {
         {meals && meals.length > 0 && (
           <>
             {meals.map((meal: MealData) => (
-              <Grid item xs={12} md={6} xl={3} key={meal.mealId}>
+              <Grid item xs={12} md={6} xl={3} key={meal.id}>
                 <MealCard
                   image={meal.imageUrl}
                   title={meal.title}

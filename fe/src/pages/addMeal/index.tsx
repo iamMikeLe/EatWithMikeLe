@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -7,15 +9,34 @@ import Grid from "@mui/material/Grid";
 import { Box, Button, Typography } from "components";
 import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
+import { useAppSelector } from "store/hooks";
 
 // page components
+import { createMeal } from "API/graphql/queries";
+import { selectMealFormValues } from "./addMealSlice";
 import MealInfo from "./components/MealInfo";
 import MediaUpload from "./components/MediaUpload";
 
 function AddMeal(): JSX.Element {
+  const navigate = useNavigate();
   const { t } = useTranslation();
+  const [addMealLoading, setAddMealLoading] = useState(false);
+  const mealForm = useAppSelector(selectMealFormValues);
 
-  //TODO - fire function that adds meals form value from redux to db
+  const createMealAsync = async () => {
+    // TODO: add validation
+    setAddMealLoading(true);
+    try {
+      const createdMeal = await createMeal(mealForm);
+      setAddMealLoading(false);
+      const mealId = (createdMeal as any).meal.id;
+      navigate(`/meal/${mealId}`);
+    } catch (error) {
+      setAddMealLoading(false);
+      console.log("need error toest handler", error);
+    }
+  };
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -47,7 +68,8 @@ function AddMeal(): JSX.Element {
                     <Button
                       variant="gradient"
                       color="dark"
-                      onClick={() => console.log("send")}
+                      disabled={addMealLoading}
+                      onClick={() => createMealAsync()}
                     >
                       {t("ADD")}
                     </Button>
