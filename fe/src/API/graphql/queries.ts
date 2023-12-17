@@ -7,7 +7,7 @@ export const fetchMeals = () => {
   return client.request(gql`
     query {
       meals {
-        mealId
+        id
         title
         description
         imageUrl

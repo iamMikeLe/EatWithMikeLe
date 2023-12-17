@@ -7,6 +7,10 @@ type Query {
   places: [Place!]
 }
 
+type Mutation {
+  createMeal(input: CreateMealInput!): Meal!
+}
+
 type User {
   userId: String!
   firstName: String!
@@ -48,4 +52,13 @@ type Place {
 type Coords {
   longitude: String!
   latitude: String!
+}
+
+input CreateMealInput {
+  imageUrl: String!
+  title: String!
+  description: String!
+  tags: [String]!
+  author: String!
+  authorId: String!
 }

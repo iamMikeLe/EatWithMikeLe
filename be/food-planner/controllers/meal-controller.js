@@ -3,22 +3,6 @@ import Meal from "../models/meal.js";
 
 export const getAllMeals = async () => {
   let meals;
-  /*   const createdMeal = new Meal({
-    title: "Gnochi",
-    description: "potato gnochi with tomato sauce",
-    imageUrl: "https://picsum.photos/320/190",
-    tags: ["potato", "tomato", "vegetarian"],
-    author: "Mike",
-    authorId: "123456456",
-  });
-
-  try {
-    await createdMeal.save();
-  } catch (err) {
-    const error = new HttpError("constants.CREATE_MEAL_FAILED", 500);
-    console.log("error", error);
-  }
- */
   try {
     meals = await Meal.find();
   } catch (err) {
@@ -26,4 +10,31 @@ export const getAllMeals = async () => {
     console.log("error", error);
   }
   return meals.map((meal) => meal.toObject({ getters: true }));
+};
+
+export const createMeal = async ({
+  title,
+  description,
+  imageUrl,
+  tags,
+  author,
+  authorId,
+}) => {
+  const createdMeal = new Meal({
+    title,
+    description,
+    imageUrl,
+    tags,
+    author,
+    authorId,
+  });
+
+  try {
+    await createdMeal.save();
+    console.log("create meal success", createdMeal.toObject({ getters: true }));
+  } catch (err) {
+    const error = new HttpError("constants.CREATE_MEAL_FAILED", 500);
+    console.log("error", error);
+  }
+  return createdMeal.toObject({ getters: true });
 };

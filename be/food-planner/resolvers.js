@@ -1,4 +1,4 @@
-import { getAllMeals } from "./controllers/meal-controller.js";
+import { createMeal, getAllMeals } from "./controllers/meal-controller.js";
 import {
   dummyMeal,
   dummyMeals,
@@ -25,6 +25,12 @@ export const resolvers = {
     place: (_root, { id }) => dummyPlace,
 
     places: () => dummyPlaces,
+  },
+
+  Mutation: {
+    createMeal: (_root, { input }) => {
+      return createMeal(input);
+    },
   },
 
   User: {
