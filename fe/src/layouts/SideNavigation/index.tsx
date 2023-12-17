@@ -1,18 +1,16 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
 
 // @mui material components
 import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
-import Link from "@mui/material/Link";
 import List from "@mui/material/List";
 
 import { Box, Typography } from "components";
 
 // Material Dashboard 2 PRO React TS examples components
 import SidenavCollapse from "./Sidenav/SidenavCollapse";
-import SidenavItem from "./Sidenav/SidenavItem";
 
 // Custom styles for the Sidenav
 import SidenavRoot from "./Sidenav/SidenavRoot";
@@ -61,10 +59,6 @@ function SideNavigation({
   routes,
   ...rest
 }: Props): JSX.Element {
-  const [openCollapse, setOpenCollapse] = useState<boolean | string>(false);
-  const [openNestedCollapse, setOpenNestedCollapse] = useState<
-    boolean | string
-  >(false);
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } =
     controller;
@@ -73,8 +67,6 @@ function SideNavigation({
   const { pathname } = location;
   const collapseName = pathname.split("/").slice(1)[0];
   const items = pathname.split("/").slice(1);
-  const itemParentName = items[1];
-  const itemName = items[items.length - 1];
 
   let textColor:
     | "primary"
@@ -96,11 +88,6 @@ function SideNavigation({
   }
 
   const closeSidenav = () => setMiniSidenav(dispatch, true);
-
-  useEffect(() => {
-    setOpenCollapse(collapseName);
-    setOpenNestedCollapse(itemParentName);
-  }, []);
 
   useEffect(() => {
     // A function that sets the mini state of the sidenav.
@@ -128,103 +115,9 @@ function SideNavigation({
     return () => window.removeEventListener("resize", handleMiniSidenav);
   }, [dispatch, location]);
 
-  // Render all the nested collapse items from the routes.js
-  const renderNestedCollapse = (collapse: any) => {
-    const template = collapse.map(({ name, route, key, href }: any) =>
-      href ? (
-        <Link
-          key={key}
-          href={href}
-          target="_blank"
-          rel="noreferrer"
-          sx={{ textDecoration: "none" }}
-        >
-          <SidenavItem name={t(name)} nested />
-        </Link>
-      ) : (
-        <NavLink to={route} key={key} style={{ textDecoration: "none" }}>
-          <SidenavItem name={t(name)} active={route === pathname} nested />
-        </NavLink>
-      )
-    );
-
-    return template;
-  };
-  // Render the all the collpases from the routes.js
-  const renderCollapse = (collapses: any) =>
-    collapses.map(({ name, collapse, route, href, key }: any) => {
-      let returnValue;
-
-      if (collapse) {
-        returnValue = (
-          <SidenavItem
-            key={key}
-            color={color}
-            name={t(name)}
-            active={key === itemParentName ? "isParent" : false}
-            open={openNestedCollapse === key}
-            onClick={({ currentTarget }: any) =>
-              openNestedCollapse === key &&
-              currentTarget.classList.contains("MuiListItem-root")
-                ? setOpenNestedCollapse(false)
-                : setOpenNestedCollapse(key)
-            }
-          >
-            {renderNestedCollapse(collapse)}
-          </SidenavItem>
-        );
-      } else {
-        returnValue = href ? (
-          <Link
-            href={href}
-            key={key}
-            target="_blank"
-            rel="noreferrer"
-            sx={{ textDecoration: "none" }}
-          >
-            <SidenavItem
-              color={color}
-              name={t(name)}
-              active={key === itemName}
-            />
-          </Link>
-        ) : (
-          <NavLink to={route} key={key} style={{ textDecoration: "none" }}>
-            <SidenavItem
-              color={color}
-              name={t(name)}
-              active={key === itemName}
-            />
-          </NavLink>
-        );
-      }
-
-      return (
-        <List
-          key={key}
-          sx={{
-            px: 2,
-            my: 0.3,
-          }}
-        >
-          {returnValue}
-        </List>
-      );
-    });
-
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
   const renderRoutes = routes.map(
-    ({
-      type,
-      name,
-      icon,
-      title,
-      collapse,
-      noCollapse,
-      key,
-      href,
-      route,
-    }: any) => {
+    ({ type, name, icon, title, noCollapse, key, route }: any) => {
       if (type === "noDisplay") {
         return null;
       }
@@ -236,9 +129,7 @@ function SideNavigation({
               icon={icon}
               noCollapse={noCollapse}
               active={key === collapseName}
-            >
-              {collapse ? renderCollapse(collapse) : null}
-            </SidenavCollapse>
+            ></SidenavCollapse>
           </NavLink>
         );
       }
