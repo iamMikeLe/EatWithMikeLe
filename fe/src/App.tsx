@@ -21,18 +21,17 @@ import { selectLanguage } from "store/appSettingsSlice";
 import { useAppSelector } from "store/hooks";
 
 // Material Dashboard 2 PRO React TS contexts
-import { setDarkMode, useMaterialUIController } from "context";
+import { useMaterialUIController } from "context";
+import SettingsModal from "pages/settingsModal";
 
 export default function App() {
   const language = useAppSelector(selectLanguage);
-  const [{ darkMode }, dispatch] = useMaterialUIController();
+  const [{ darkMode }] = useMaterialUIController();
   const { pathname } = useLocation();
   const { i18n } = useTranslation();
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
-    // function that I will use later to set dark/white mode
-    setDarkMode(dispatch, !darkMode);
     i18n.changeLanguage(language);
     document.documentElement.scrollTop = 0;
     if (document.scrollingElement) {
@@ -43,7 +42,7 @@ export default function App() {
   return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-
+      <SettingsModal />
       <SideNavigation
         color="info"
         brand={brandDark}
