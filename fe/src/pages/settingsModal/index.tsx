@@ -27,16 +27,16 @@ const style = {
 
 export default function SettingsModal() {
   const settingsModal = useAppSelector(selectSettingsModal);
-  const dispatchRedux = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const [{ darkMode }, dispatch] = useMaterialUIController();
+  const [{ darkMode }, dispatchContext] = useMaterialUIController();
 
   return (
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       open={settingsModal}
-      onClose={() => dispatchRedux(setShowSettingsModal(false))}
+      onClose={() => dispatch(setShowSettingsModal(false))}
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
@@ -56,7 +56,7 @@ export default function SettingsModal() {
           <Button
             variant="gradient"
             color="dark"
-            onClick={() => setDarkMode(dispatch, !darkMode)}
+            onClick={() => setDarkMode(dispatchContext, !darkMode)}
           >
             {t("TOGGLE_DARK_MODE")}
           </Button>

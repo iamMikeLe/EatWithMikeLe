@@ -36,12 +36,12 @@ type Props = {
 //TODO optimize this component
 function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
   const { t } = useTranslation();
-  const [controller, dispatch] = useMaterialUIController();
-  const dispatchRedux = useAppDispatch();
+  const [controller, dispatchContext] = useMaterialUIController();
+  const dispatch = useAppDispatch();
   const { miniSidenav, transparentNavbar, darkMode } = controller;
   const route = useLocation().pathname.split("/").slice(1);
 
-  const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
+  const handleMiniSidenav = () => setMiniSidenav(dispatchContext, !miniSidenav);
 
   // Styles for the navbar icons
   const iconsStyle = ({
@@ -126,7 +126,7 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
                 disableRipple
                 color="inherit"
                 sx={navbarIconButton}
-                onClick={() => dispatchRedux(setShowSettingsModal(true))}
+                onClick={() => dispatch(setShowSettingsModal(true))}
               >
                 <Icon sx={iconsStyle}>settings</Icon>
               </IconButton>
