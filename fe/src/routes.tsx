@@ -13,7 +13,7 @@ const routes = [
   {
     type: "collapse",
     name: "MEALS",
-    key: "meals",
+    key: "meal",
     route: "/meal/:id",
     component: <Meals />,
     icon: <LunchDiningIcon fontSize="medium" />,
