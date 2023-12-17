@@ -1,5 +1,4 @@
 import { ReactNode, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
 
 // @mui material components
@@ -8,9 +7,6 @@ import Icon from "@mui/material/Icon";
 import List from "@mui/material/List";
 
 import { Box, Typography } from "components";
-
-// Material Dashboard 2 PRO React TS examples components
-import SidenavCollapse from "./Sidenav/SidenavCollapse";
 
 // Custom styles for the Sidenav
 import SidenavRoot from "./Sidenav/SidenavRoot";
@@ -23,6 +19,7 @@ import {
   setWhiteSidenav,
   useMaterialUIController,
 } from "context";
+import ItemsByRoutes from "./components/ItemsByRoutes";
 
 // Declaring props types for Sidenav
 type Props = {
@@ -63,9 +60,6 @@ function SideNavigation({
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } =
     controller;
   const location = useLocation();
-  const { t } = useTranslation();
-  const { pathname } = location;
-  const collapseName = pathname.split("/").slice(1)[0];
 
   let textColor:
     | "primary"
@@ -114,57 +108,6 @@ function SideNavigation({
     return () => window.removeEventListener("resize", handleMiniSidenav);
   }, [dispatch, location]);
 
-  // Render all the routes from the routes.js (All the visible items on the Sidenav)
-  const renderRoutes = routes.map(
-    ({ type, name, icon, title, key, route }: any) => {
-      if (type === "noDisplay") {
-        return null;
-      }
-      if (type === "menuItem") {
-        return (
-          <NavLink to={route} key={key}>
-            <SidenavCollapse
-              name={t(name)}
-              icon={icon}
-              active={key === collapseName}
-            />
-          </NavLink>
-        );
-      }
-
-      if (type === "title") {
-        return (
-          <Typography
-            key={key}
-            color={textColor}
-            display="block"
-            variant="caption"
-            fontWeight="bold"
-            textTransform="uppercase"
-            pl={3}
-            mt={2}
-            mb={1}
-            ml={1}
-          >
-            {t(title)}
-          </Typography>
-        );
-      }
-
-      if (type === "divider") {
-        return (
-          <Divider
-            key={key}
-            light={
-              (!darkMode && !whiteSidenav && !transparentSidenav) ||
-              (darkMode && !transparentSidenav && whiteSidenav)
-            }
-          />
-        );
-      }
-    }
-  );
-
   return (
     <SidenavRoot
       {...rest}
@@ -190,7 +133,7 @@ function SideNavigation({
             <Box component="img" src={brand} alt="Brand" width="2rem" />
           )}
           <Box
-            width={!brandName && "100%"}
+            width={brandName ? "100%" : undefined}
             sx={(theme: any) => sidenavLogoLabel(theme, { miniSidenav })}
           >
             <Typography
@@ -210,7 +153,9 @@ function SideNavigation({
           (darkMode && !transparentSidenav && whiteSidenav)
         }
       />
-      <List>{renderRoutes}</List>
+      <List>
+        <ItemsByRoutes routes={routes} />
+      </List>
     </SidenavRoot>
   );
 }
