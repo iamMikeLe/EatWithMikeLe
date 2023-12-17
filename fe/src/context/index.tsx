@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useMemo, useReducer } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useMemo,
+  useReducer,
+} from "react";
 
 // The Material Dashboard 2 PRO React TSUI Dashboard PRO Material main context
 const MaterialUI = createContext<any>(null);
@@ -83,14 +89,18 @@ function reducer(state: StateTypes, action: ActionTypes) {
 }
 
 // Material Dashboard 2 PRO React context provider
-function MaterialUIControllerProvider({ children }: { children: ReactNode }): JSX.Element {
+function MaterialUIControllerProvider({
+  children,
+}: {
+  children: ReactNode;
+}): JSX.Element {
   const initialState: StateTypes = {
     miniSidenav: false,
     transparentSidenav: false,
     whiteSidenav: false,
     sidenavColor: "info",
     transparentNavbar: true,
-    fixedNavbar: true,
+    fixedNavbar: false,
     openConfigurator: false,
     direction: "ltr",
     layout: "dashboard",
@@ -133,9 +143,25 @@ const setWhiteSidenav = (
 const setSidenavColor = (
   dispatch: (arg: {
     type: "SIDENAV_COLOR";
-    value: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    value:
+      | "primary"
+      | "secondary"
+      | "info"
+      | "success"
+      | "warning"
+      | "error"
+      | "light"
+      | "dark";
   }) => void,
-  value: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark"
+  value:
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error"
+    | "light"
+    | "dark"
 ) => dispatch({ type: "SIDENAV_COLOR", value });
 const setTransparentNavbar = (
   dispatch: (arg: { type: "TRANSPARENT_NAVBAR"; value: boolean }) => void,
@@ -174,5 +200,5 @@ export {
   setTransparentNavbar,
   setTransparentSidenav,
   setWhiteSidenav,
-  useMaterialUIController // eslint-disable-line
+  useMaterialUIController, // eslint-disable-line
 };

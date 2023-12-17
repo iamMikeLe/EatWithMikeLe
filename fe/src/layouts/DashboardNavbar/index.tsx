@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 
@@ -6,10 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Icon from "@mui/material/Icon";
 import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 
-import { Badge, Box, NotificationItem, Typography } from "components";
+import { Badge, Box, Typography } from "components";
 
 // Custom styles for DashboardNavbar
 import {
@@ -22,12 +20,7 @@ import {
 } from "layouts/DashboardNavbar/styles";
 
 // Material Dashboard 2 PRO React context
-import {
-  setMiniSidenav,
-  setOpenConfigurator,
-  setTransparentNavbar,
-  useMaterialUIController,
-} from "context";
+import { setMiniSidenav, useMaterialUIController } from "context";
 
 // Declaring prop types for DashboardNavbar
 type Props = {
@@ -36,81 +29,14 @@ type Props = {
   isMini?: boolean;
 };
 
+//TODO optimize this component
 function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
-  const [navbarType, setNavbarType] = useState<
-    "fixed" | "absolute" | "relative" | "static" | "sticky"
-  >();
   const { t } = useTranslation();
   const [controller, dispatch] = useMaterialUIController();
-  const {
-    miniSidenav,
-    transparentNavbar,
-    fixedNavbar,
-    openConfigurator,
-    darkMode,
-  } = controller;
-  const [openMenu, setOpenMenu] = useState<any>(false);
+  const { miniSidenav, transparentNavbar, darkMode } = controller;
   const route = useLocation().pathname.split("/").slice(1);
 
-  useEffect(() => {
-    // Setting the navbar type
-    if (fixedNavbar) {
-      setNavbarType("sticky");
-    } else {
-      setNavbarType("static");
-    }
-
-    // A function that sets the transparent state of the navbar.
-    function handleTransparentNavbar() {
-      setTransparentNavbar(
-        dispatch,
-        (fixedNavbar && window.scrollY === 0) || !fixedNavbar
-      );
-    }
-
-    /** 
-     The event listener that's calling the handleTransparentNavbar function when 
-     scrolling the window.
-    */
-    window.addEventListener("scroll", handleTransparentNavbar);
-
-    // Call the handleTransparentNavbar function to set the state with the initial value.
-    handleTransparentNavbar();
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("scroll", handleTransparentNavbar);
-  }, [dispatch, fixedNavbar]);
-
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleConfiguratorOpen = () =>
-    setOpenConfigurator(dispatch, !openConfigurator);
-  const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
-  const handleCloseMenu = () => setOpenMenu(false);
-
-  // Render the notifications menu
-  const renderMenu = () => (
-    <Menu
-      anchorEl={openMenu}
-      anchorReference={null}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "left",
-      }}
-      open={Boolean(openMenu)}
-      onClose={handleCloseMenu}
-      sx={{ mt: 2 }}
-    >
-      <NotificationItem icon={<Icon>email</Icon>} title="Check new messages" />
-      <NotificationItem
-        icon={<Icon>podcasts</Icon>}
-        title="Manage Podcast sessions"
-      />
-      <NotificationItem
-        icon={<Icon>shopping_cart</Icon>}
-        title="Payment successfully completed"
-      />
-    </Menu>
-  );
 
   // Styles for the navbar icons
   const iconsStyle = ({
@@ -133,7 +59,7 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
 
   return (
     <AppBar
-      position={absolute ? "absolute" : navbarType}
+      position="static"
       color="inherit"
       sx={(theme) =>
         navbar(theme, { transparentNavbar, absolute, light, darkMode })
@@ -173,11 +99,6 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
         {isMini ? null : (
           <Box sx={(theme) => navbarRow(theme, { isMini })}>
             <Box color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in/basic">
-                <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <Icon sx={iconsStyle}>account_circle</Icon>
-                </IconButton>
-              </Link>
               <IconButton
                 size="small"
                 disableRipple
@@ -189,12 +110,18 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
                   {miniSidenav ? "menu_open" : "menu"}
                 </Icon>
               </IconButton>
+              <Link to="/authentication/sign-in/basic">
+                <IconButton sx={navbarIconButton} size="small" disableRipple>
+                  <Icon sx={iconsStyle}>account_circle</Icon>
+                </IconButton>
+              </Link>
+
               <IconButton
                 size="small"
                 disableRipple
                 color="inherit"
                 sx={navbarIconButton}
-                onClick={handleConfiguratorOpen}
+                onClick={() => console.log("click")}
               >
                 <Icon sx={iconsStyle}>settings</Icon>
               </IconButton>
@@ -202,13 +129,12 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
                 size="small"
                 color="inherit"
                 sx={navbarIconButton}
-                onClick={handleOpenMenu}
+                onClick={() => console.log("click")}
               >
                 <Badge badgeContent={9} color="error" size="xs" circular>
                   <Icon sx={iconsStyle}>notifications</Icon>
                 </Badge>
               </IconButton>
-              {renderMenu()}
             </Box>
           </Box>
         )}
