@@ -46,7 +46,7 @@ export default function App() {
 
       <Routes>
         {routes.map((route) => {
-          if (route.type === "collapse") {
+          if (route.type === "menuItem") {
             return (
               <Route
                 path={route.route}

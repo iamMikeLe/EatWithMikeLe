@@ -66,7 +66,6 @@ function SideNavigation({
   const { t } = useTranslation();
   const { pathname } = location;
   const collapseName = pathname.split("/").slice(1)[0];
-  const items = pathname.split("/").slice(1);
 
   let textColor:
     | "primary"
@@ -117,19 +116,18 @@ function SideNavigation({
 
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
   const renderRoutes = routes.map(
-    ({ type, name, icon, title, noCollapse, key, route }: any) => {
+    ({ type, name, icon, title, key, route }: any) => {
       if (type === "noDisplay") {
         return null;
       }
-      if (type === "collapse") {
+      if (type === "menuItem") {
         return (
           <NavLink to={route} key={key}>
             <SidenavCollapse
               name={t(name)}
               icon={icon}
-              noCollapse={noCollapse}
               active={key === collapseName}
-            ></SidenavCollapse>
+            />
           </NavLink>
         );
       }

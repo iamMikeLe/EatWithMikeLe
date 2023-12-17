@@ -6,7 +6,6 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 
-// TODO - fix type collapse, change it to different name? or just add another type for non displaying menu
 const routes = [
   { type: "title", title: "FOOD_SECTION", key: "title-docs" },
   {
@@ -19,7 +18,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    type: "menuItem",
     name: "MEALS",
     key: "meals",
     route: "/meals",
@@ -28,7 +27,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    type: "menuItem",
     name: "VISITED_PLACES",
     key: "places",
     route: "/places",
@@ -37,7 +36,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    type: "menuItem",
     name: "FOOD_PLANNER",
     key: "planner",
     route: "/planner",
@@ -46,11 +45,12 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    type: "menuItem",
     name: "ADD_MEAL",
     key: "addMeal",
     route: "/add-meal",
     component: <AddMeal />,
+    icon: <CalendarMonthIcon fontSize="medium" />,
     noCollapse: true,
   },
 ];

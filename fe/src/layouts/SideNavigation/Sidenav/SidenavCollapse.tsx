@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 
 // @mui material components
-import Collapse from "@mui/material/Collapse";
 import Icon from "@mui/material/Icon";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -11,7 +10,6 @@ import { Box } from "components";
 
 // Custom styles for the SidenavCollapse
 import {
-  collapseArrow,
   collapseIcon,
   collapseIconBox,
   collapseItem,
@@ -25,9 +23,7 @@ import { useMaterialUIController } from "context";
 type Props = {
   icon: ReactNode;
   name: string;
-  children?: ReactNode;
   active?: Boolean;
-  noCollapse?: Boolean;
   open?: Boolean;
   [key: string]: any;
 };
@@ -35,9 +31,7 @@ type Props = {
 function SidenavCollapse({
   icon,
   name,
-  children,
   active,
-  noCollapse,
   open,
   ...rest
 }: Props): JSX.Element {
@@ -88,29 +82,8 @@ function SidenavCollapse({
               })
             }
           />
-
-          <Icon
-            sx={(theme) =>
-              collapseArrow(theme, {
-                noCollapse,
-                transparentSidenav,
-                whiteSidenav,
-                miniSidenav,
-                open,
-                active,
-                darkMode,
-              })
-            }
-          >
-            expand_less
-          </Icon>
         </Box>
       </ListItem>
-      {children && (
-        <Collapse in={Boolean(open)} unmountOnExit>
-          {children}
-        </Collapse>
-      )}
     </>
   );
 }
@@ -118,8 +91,6 @@ function SidenavCollapse({
 // Declaring default props for SidenavCollapse
 SidenavCollapse.defaultProps = {
   active: false,
-  noCollapse: false,
-  children: false,
   open: false,
 };
 
