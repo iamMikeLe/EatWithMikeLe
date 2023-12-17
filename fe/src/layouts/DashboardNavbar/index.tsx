@@ -22,6 +22,10 @@ import {
 // Material Dashboard 2 PRO React context
 import { setMiniSidenav, useMaterialUIController } from "context";
 
+//store
+import { setShowSettingsModal } from "store/appSettingsSlice";
+import { useAppDispatch } from "store/hooks";
+
 // Declaring prop types for DashboardNavbar
 type Props = {
   absolute?: boolean;
@@ -33,6 +37,7 @@ type Props = {
 function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
   const { t } = useTranslation();
   const [controller, dispatch] = useMaterialUIController();
+  const dispatchRedux = useAppDispatch();
   const { miniSidenav, transparentNavbar, darkMode } = controller;
   const route = useLocation().pathname.split("/").slice(1);
 
@@ -121,7 +126,7 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
                 disableRipple
                 color="inherit"
                 sx={navbarIconButton}
-                onClick={() => console.log("click")}
+                onClick={() => dispatchRedux(setShowSettingsModal(true))}
               >
                 <Icon sx={iconsStyle}>settings</Icon>
               </IconButton>
