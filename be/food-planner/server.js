@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 
 import express from "express";
 import { readFile } from "node:fs/promises";
+import { createUser } from "./controllers/user-controller.js";
 import HttpError from "./models/http-error.js";
 import { resolvers } from "./resolvers.js";
 
@@ -42,6 +43,17 @@ mongoose
     app.listen({ port }, () => {
       console.log(`Server running on port ${port}`);
       console.log(`GraphQL endpoint: http://localhost:${port}/graphql`);
+    });
+    createUser({
+      firstName: "John",
+      lastName: "Doe",
+      email: "john@email.com",
+      password: "test",
+      avatar: "https://i.pravatar.cc/300",
+      favorites: [],
+      learned: [],
+      createdAt: new Date().toISOString(),
+      modifiedAt: new Date().toISOString(),
     });
   })
   // eslint-disable-next-line no-console
