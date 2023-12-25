@@ -7,8 +7,9 @@ const mealSchema = new Schema({
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
   tags: [{ type: String, required: false }],
-  author: { type: String, required: true },
-  authorId: { type: String, required: true },
+  author: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
+  createdAt: { type: String, required: true },
+  modifiedAt: { type: String, required: true },
 });
 
 export default mongoose.model("Meal", mealSchema);

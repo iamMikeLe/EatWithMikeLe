@@ -7,10 +7,6 @@ export const createUser = async ({
   email,
   password,
   avatar,
-  favorites,
-  learned,
-  createdAt,
-  modifiedAt,
 }) => {
   const createdUser = new User({
     firstName,
@@ -18,18 +14,18 @@ export const createUser = async ({
     email,
     password,
     avatar,
-    favorites,
-    learned,
-    createdAt,
-    modifiedAt,
+    favorites: [],
+    learned: [],
+    meals: [],
+    createdAt: new Date().toISOString(),
+    modifiedAt: new Date().toISOString(),
   });
 
   try {
     await createdUser.save();
-    console.log("user created successfully", createdUser);
   } catch (err) {
     const error = new HttpError("constants.CREATE_USER_FAILED", 500);
-    console.log("error creating user", error);
+    throw error;
   }
   return createdUser.toObject({ getters: true });
 };

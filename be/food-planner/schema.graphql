@@ -32,7 +32,6 @@ type Meal {
   description: String!
   tags: [String]
   author: String!
-  authorId: String!
   createdAt: String!
   modifiedAt: String!
 }
@@ -60,5 +59,4 @@ input CreateMealInput {
   description: String!
   tags: [String]!
   author: String!
-  authorId: String!
 }
