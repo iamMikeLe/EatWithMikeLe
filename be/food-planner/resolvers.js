@@ -4,23 +4,14 @@ import {
   getMealById,
   getMealByUserId,
 } from "./controllers/meal-controller.js";
-import {
-  dummyMeals,
-  dummyPlace,
-  dummyPlaces,
-  dummyUser,
-  dummyUsers,
-} from "./utils/dummyData.js";
+import { getUsers, getUsersById } from "./controllers/user-controller.js";
+import { dummyPlace, dummyPlaces } from "./utils/dummyData.js";
 
 export const resolvers = {
   Query: {
-    user: (_root, { id }) => {
-      console.log(id);
-      // db fetch function by user id here needed
-      return dummyUser;
-    },
+    user: (_root, { id }) => getUsersById(id),
 
-    users: () => dummyUsers,
+    users: () => getUsers(),
 
     meal: (_root, { id }) => getMealById(id),
 
