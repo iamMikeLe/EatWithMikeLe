@@ -1,35 +1,22 @@
-const GET_ALL_MEALS_FAILED = "Failed to fetch all meals.";
-const CREATING_MEAL_FAILED = "Failed to create new meal.";
-const NO_MATCH_BY_ID = "Failed to find user by ID";
-const CREATE_USER_FAILED = "Failed to create new user.";
-const INVALID_ROUTE = "Could not find this route.";
-const UNKNOWN_ERROR = "An unknown error occurred!";
-const DATABASE_CONNECTION_FAILED = "Could not connect to database.";
-const GET_USER_BY_ID_FAILED = "Failed to find user by ID";
-const COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID =
-  "Could not find match by provided meal ID.";
-const DELETE_MEAL_FAILED = "Failed to delete meal.";
-const UNAUTHORIZED = "Unauthorized.";
-const DELETE_MEAL_SUCCESS = "Successfully deleted meal.";
+export const GET_ALL_MEALS_FAILED = "GET_ALL_MEALS_FAILED";
+export const CREATING_MEAL_FAILED = "CREATING_MEAL_FAILED";
+export const NO_MATCH_BY_USER_ID = "NO_MATCH_BY_USER_ID";
+export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
+export const INVALID_ROUTE = "INVALID_ROUTE";
+export const UNKNOWN_ERROR = "UNKNOWN_ERROR";
+export const DATABASE_CONNECTION_FAILED = "Could not connect to database.";
+export const GET_USER_BY_ID_FAILED = "GET_USER_BY_ID_FAILED";
+export const COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID =
+  "COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID";
+export const DELETE_MEAL_FAILED = "DELETE_MEAL_FAILED";
+export const UNAUTHORIZED = "UNAUTHORIZED";
+export const DELETE_MEAL_SUCCESS = "Successfully deleted meal.";
 export const INVALID_INPUT = "INVALID_INPUT";
 export const LOGIN_FAILED = "LOGIN_FAILED";
 export const SIGNUP_FAILED_TOKEN_GENERATION = "SIGNUP_FAILED_TOKEN_GENERATION";
 export const CREATING_USER_FAILED = "CREATING_USER_FAILED";
-export default {
-  GET_ALL_MEALS_FAILED,
-  CREATING_MEAL_FAILED,
-  NO_MATCH_BY_ID,
-  CREATE_USER_FAILED,
-  INVALID_ROUTE,
-  UNKNOWN_ERROR,
-  DATABASE_CONNECTION_FAILED,
-  GET_USER_BY_ID_FAILED,
-  COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID,
-  DELETE_MEAL_FAILED,
-  UNAUTHORIZED,
-  DELETE_MEAL_SUCCESS,
-  INVALID_INPUT,
-  LOGIN_FAILED,
-  SIGNUP_FAILED_TOKEN_GENERATION,
-  CREATING_USER_FAILED,
-};
+export const COULD_NOT_FIND_MATCH_BY_PROVIDED_USER_ID =
+  "COULD_NOT_FIND_MATCH_BY_PROVIDED_USER_ID";
+export const GET_ALL_MEALS_BY_USER_FAILED = "GET_ALL_MEALS_BY_USER_FAILED";
+export const GET_MEAL_BY_ID_FAILED = "GET_MEAL_BY_ID_FAILED";
+export const GET_USER_FAILED = "GET_USER_FAILED";
