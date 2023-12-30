@@ -9,7 +9,7 @@ export const getAllMeals = async () => {
   let meals;
   try {
     meals = await Meal.find();
-  } catch (err) {
+  } catch (_err) {
     const error = new HttpError(constants.GET_ALL_MEALS_FAILED, 500);
     throw error;
   }
@@ -21,7 +21,7 @@ export const getMealById = async (mealId) => {
   let meal;
   try {
     meal = await Meal.findById(mealId);
-  } catch (err) {
+  } catch (_err) {
     const error = new HttpError(constants.GET_MEAL_BY_ID_FAILED, 500);
     throw error;
   }
@@ -36,7 +36,7 @@ export const getMealByUserId = async (userId) => {
   let userWithMeals;
   try {
     userWithMeals = await User.findById(userId).populate("meals");
-  } catch (err) {
+  } catch (_err) {
     const error = new HttpError(constants.GET_ALL_MEALS_BY_USER_FAILED, 500);
     throw error;
   }
@@ -71,7 +71,7 @@ export const createMeal = async ({
   let user;
   try {
     user = await User.findById(author);
-  } catch (err) {
+  } catch (_err) {
     const error = new HttpError(constants.CREATING_MEAL_FAILED, 500);
     throw error;
   }
@@ -88,7 +88,7 @@ export const createMeal = async ({
     user.meals.push(createdMeal);
     await user.save({ session: sess });
     await sess.commitTransaction();
-  } catch (err) {
+  } catch (_err) {
     const error = new HttpError(constants.CREATING_MEAL_FAILED, 500);
     throw error;
   }
@@ -104,12 +104,12 @@ export const deleteMealById = async (
   let meal;
   try {
     meal = await Meal.findById(mealId).populate("author");
-  } catch (err) {
+  } catch (_err) {
     const error = new HttpError(
       constants.COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID,
       500
     );
-    throw error;
+    return { message: error };
   }
 
   if (!meal) {
@@ -117,12 +117,12 @@ export const deleteMealById = async (
       constants.COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID,
       404
     );
-    throw error;
+    return { message: error };
   }
 
   if (meal.author.id.toString() !== userId) {
     const error = new HttpError(constants.UNAUTHORIZED, 401);
-    throw error;
+    return { message: error };
   }
 
   try {
@@ -132,9 +132,9 @@ export const deleteMealById = async (
     meal.author.meals.pull(meal);
     await meal.author.save({ session: sess });
     await sess.commitTransaction();
-  } catch (err) {
+  } catch (_err) {
     const error = new HttpError(constants.DELETE_MEAL_FAILED, 500);
-    throw error;
+    return { message: error };
   }
 
   return { deletedMealId: mealId, message: constants.DELETE_MEAL_SUCCESS };
