@@ -11,7 +11,7 @@ import {
   GET_ALL_MEALS_BY_USER_FAILED,
   GET_ALL_MEALS_FAILED,
   GET_MEAL_BY_ID_FAILED,
-  NO_MATCH_BY_USER_ID,
+  UNAUTHORIZED,
 } from "../utils/constants.js";
 
 // ------------------------------------------------------------
