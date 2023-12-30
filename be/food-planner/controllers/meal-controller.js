@@ -99,7 +99,7 @@ export const createMeal = async ({
 // ------------------------------------------------------------
 export const deleteMealById = async (
   mealId,
-  userId = "6589922d23d4d9220d665d1c"
+  userId = "6589922d23d4d9220d665d1c" // will be extracted from token in future
 ) => {
   let meal;
   try {
