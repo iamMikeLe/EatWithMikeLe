@@ -1,10 +1,10 @@
 export const dummyPlace = {
-  id: "123441",
+  placeId: "123441",
   name: "spaghetti",
   description: "spaghetti yummy",
   tags: ["pasta", "sugar"],
-  user: "John",
-  userId: "123441",
+  author: "John",
+  authorId: "123441",
   coords: {
     longitude: "123",
     latitude: "1223",
@@ -17,8 +17,8 @@ export const dummyPlaces = [
     name: "spaghettafa",
     description: "spaghetti yummy",
     tags: ["pasta", "sugar"],
-    user: "John",
-    user: "123441",
+    author: "John",
+    authorId: "123441",
     coords: {
       longitude: "123",
       latitude: "1223",
@@ -29,8 +29,8 @@ export const dummyPlaces = [
     name: "spaghetti",
     description: "spaghetti yummy",
     tags: ["pasta", "sugar"],
-    user: "John",
-    userId: "123441",
+    author: "John",
+    authorId: "123441",
     coords: {
       longitude: "123",
       latitude: "1223",

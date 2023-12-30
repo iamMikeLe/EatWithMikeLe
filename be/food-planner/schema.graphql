@@ -30,18 +30,18 @@ type Meal {
   title: String!
   description: String!
   tags: [String]
-  user: String!
+  author: String!
   createdAt: String!
   modifiedAt: String!
 }
 
 type Place {
-  id: String!
+  placeId: String!
   name: String!
   description: String!
   tags: [String]
-  user: String!
-  userId: String!
+  author: String!
+  authorId: String!
   coords: Coords!
   createdAt: String!
   modifiedAt: String!
@@ -57,5 +57,5 @@ input CreateMealInput {
   title: String!
   description: String!
   tags: [String]!
-  user: String!
+  author: String!
 }

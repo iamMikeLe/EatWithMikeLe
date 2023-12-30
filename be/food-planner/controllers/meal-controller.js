@@ -52,22 +52,22 @@ export const createMeal = async ({
   description,
   imageUrl,
   tags,
-  // user,
+  // author,
 }) => {
-  const userId = "6589922d23d4d9220d665d1c";
+  const AuthorId = "6589922d23d4d9220d665d1c";
   const createdMeal = new Meal({
     title,
     description,
     imageUrl,
     tags,
-    user: userId,
+    author: AuthorId,
     createdAt: new Date().toISOString(),
     modifiedAt: new Date().toISOString(),
   });
 
   let user;
   try {
-    user = await User.findById(userId);
+    user = await User.findById(AuthorId);
   } catch (err) {
     const error = new HttpError(constants.CREATING_MEAL_FAILED, 500);
     throw error;
