@@ -5,7 +5,11 @@ import {
   getMealById,
   getMealByUserId,
 } from "./controllers/meal-controller.js";
-import { getUsers, getUsersById } from "./controllers/user-controller.js";
+import {
+  createUser,
+  getUsers,
+  getUsersById,
+} from "./controllers/user-controller.js";
 import { dummyPlace, dummyPlaces } from "./utils/dummyData.js";
 
 export const resolvers = {
@@ -24,6 +28,7 @@ export const resolvers = {
   },
 
   Mutation: {
+    createUser: (_root, { input }) => createUser(input),
     createMeal: (_root, { input }) => createMeal(input),
     deleteMeal: (_root, { id }) => deleteMealById(id),
   },

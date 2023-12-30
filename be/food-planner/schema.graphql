@@ -8,6 +8,7 @@ type Query {
 }
 
 type Mutation {
+  createUser(input: CreateUserInput!): User!
   createMeal(input: CreateMealInput!): Meal!
   deleteMeal(id: ID!): DeleteMealResponse!
 }
@@ -56,6 +57,14 @@ type Place {
 type Coords {
   longitude: String!
   latitude: String!
+}
+
+input CreateUserInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  avatar: String!
 }
 
 input CreateMealInput {

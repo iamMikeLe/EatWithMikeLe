@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import HttpError from "../models/http-error.js";
 import User from "../models/user.js";
 import constants from "../utils/constants.js";
@@ -35,11 +36,19 @@ export const createUser = async ({
   password,
   avatar,
 }) => {
+  let hashedPassword;
+  try {
+    hashedPassword = await bcrypt.hash(password, 12);
+  } catch (_err) {
+    const error = new HttpError(constants.CREATING_USER_FAILED, 500);
+    throw error;
+  }
+
   const createdUser = new User({
     firstName,
     lastName,
     email,
-    password,
+    password: hashedPassword,
     avatar,
     favorites: [],
     learned: [],
