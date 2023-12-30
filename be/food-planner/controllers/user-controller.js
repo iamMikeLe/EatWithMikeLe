@@ -17,7 +17,6 @@ export const getUsersById = async (userId) => {
   let user;
   try {
     user = await User.findById(userId);
-    console.log("user", user);
   } catch (err) {
     const error = new HttpError(constants.GET_USER_FAILED, 500);
     throw error;

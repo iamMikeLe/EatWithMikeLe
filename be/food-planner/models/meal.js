@@ -7,7 +7,7 @@ const mealSchema = new Schema({
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
   tags: [{ type: String, required: false }],
-  author: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
+  user: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
   createdAt: { type: String, required: true },
   modifiedAt: { type: String, required: true },
 });
