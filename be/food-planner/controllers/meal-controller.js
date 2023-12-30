@@ -15,6 +15,20 @@ export const getAllMeals = async () => {
   return meals.map((meal) => meal.toObject({ getters: true }));
 };
 
+export const getMealById = async (mealId) => {
+  let meal;
+  try {
+    meal = await Meal.findById(mealId);
+  } catch (err) {
+    const error = new HttpError(constants.GET_MEAL_BY_ID_FAILED, 500);
+    throw error;
+  }
+
+  if (!meal) return new HttpError(constants.GET_MEAL_BY_ID_FAILED, 404);
+
+  return meal.toObject({ getters: true });
+};
+
 export const createMeal = async ({
   title,
   description,
