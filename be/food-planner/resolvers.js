@@ -1,6 +1,9 @@
-import { createMeal, getAllMeals } from "./controllers/meal-controller.js";
 import {
-  dummyMeal,
+  createMeal,
+  getAllMeals,
+  getMealById,
+} from "./controllers/meal-controller.js";
+import {
   dummyMeals,
   dummyPlace,
   dummyPlaces,
@@ -18,7 +21,7 @@ export const resolvers = {
 
     users: () => dummyUsers,
 
-    meal: (_root, { id }) => dummyMeal,
+    meal: (_root, { id }) => getMealById(id),
 
     meals: () => getAllMeals(),
 
