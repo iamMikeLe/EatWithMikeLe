@@ -29,6 +29,24 @@ export const getMealById = async (mealId) => {
   return meal.toObject({ getters: true });
 };
 
+export const getMealByUserId = async (userId) => {
+  let userWithMeals;
+  try {
+    userWithMeals = await User.findById(userId).populate("meals");
+  } catch (err) {
+    const error = new HttpError(constants.GET_ALL_MEALS_BY_USER_FAILED, 500);
+    throw error;
+  }
+
+  if (!userWithMeals || userWithMeals.meals.length === 0) {
+    throw new HttpError(
+      constants.COULD_NOT_FIND_MATCH_BY_PROVIDED_USER_ID,
+      404
+    );
+  }
+  return userWithMeals.meals.map((meal) => meal.toObject({ getters: true }));
+};
+
 export const createMeal = async ({
   title,
   description,

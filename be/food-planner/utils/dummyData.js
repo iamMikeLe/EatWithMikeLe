@@ -1,5 +1,5 @@
 export const dummyUser = {
-  userId: "123131",
+  id: "6589922d23d4d9220d665d1c",
   firstName: "John",
   lastName: "Doe",
   email: "john@email.com",
@@ -11,7 +11,7 @@ export const dummyUser = {
 
 export const dummyUsers = [
   {
-    userId: "12fafa3131",
+    id: "12fafa3131",
     firstName: "Jofasfafahn",
     lastName: "Doe",
     email: "john@email.com",
@@ -21,7 +21,7 @@ export const dummyUsers = [
     learned: [],
   },
   {
-    userId: "123131",
+    id: "123131",
     firstName: "John",
     lastName: "Doe",
     email: "john@email.com",

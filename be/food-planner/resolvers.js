@@ -2,6 +2,7 @@ import {
   createMeal,
   getAllMeals,
   getMealById,
+  getMealByUserId,
 } from "./controllers/meal-controller.js";
 import {
   dummyMeals,
@@ -37,10 +38,6 @@ export const resolvers = {
   },
 
   User: {
-    meals: (user) => {
-      console.log(user.id);
-      // db fetch meals by user id function needed here
-      return dummyMeals;
-    },
+    meals: (user) => getMealByUserId(user.id),
   },
 };
