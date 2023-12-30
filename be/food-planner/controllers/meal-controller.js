@@ -2,13 +2,14 @@ import mongoose from "mongoose";
 import HttpError from "../models/http-error.js";
 import Meal from "../models/meal.js";
 import User from "../models/user.js";
+import constants from "../utils/constants.js";
 
 export const getAllMeals = async () => {
   let meals;
   try {
     meals = await Meal.find();
   } catch (err) {
-    const error = new HttpError("constants.GET_ALL_MEALS_FAILED", 500);
+    const error = new HttpError(constants.GET_ALL_MEALS_FAILED, 500);
     throw error;
   }
   return meals.map((meal) => meal.toObject({ getters: true }));
@@ -36,12 +37,12 @@ export const createMeal = async ({
   try {
     user = await User.findById(AuthorId);
   } catch (err) {
-    const error = new HttpError("constants.CREATING_MEAL_FAILED", 500);
+    const error = new HttpError(constants.CREATING_MEAL_FAILED, 500);
     throw error;
   }
 
   if (!user) {
-    const error = new HttpError("constants.NO_MATCH_BY_ID", 404);
+    const error = new HttpError(constants.NO_MATCH_BY_ID, 404);
     throw error;
   }
 
@@ -53,7 +54,7 @@ export const createMeal = async ({
     await user.save({ session: sess });
     await sess.commitTransaction();
   } catch (err) {
-    const error = new HttpError("constants.MEAL_CREATION_FAILED", 500);
+    const error = new HttpError(constants.CREATING_MEAL_FAILED, 500);
     throw error;
   }
 
