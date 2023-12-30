@@ -4,6 +4,7 @@ import Meal from "../models/meal.js";
 import User from "../models/user.js";
 import constants from "../utils/constants.js";
 
+// ------------------------------------------------------------
 export const getAllMeals = async () => {
   let meals;
   try {
@@ -15,6 +16,7 @@ export const getAllMeals = async () => {
   return meals.map((meal) => meal.toObject({ getters: true }));
 };
 
+// ------------------------------------------------------------
 export const getMealById = async (mealId) => {
   let meal;
   try {
@@ -29,6 +31,7 @@ export const getMealById = async (mealId) => {
   return meal.toObject({ getters: true });
 };
 
+// ------------------------------------------------------------
 export const getMealByUserId = async (userId) => {
   let userWithMeals;
   try {
@@ -47,6 +50,7 @@ export const getMealByUserId = async (userId) => {
   return userWithMeals.meals.map((meal) => meal.toObject({ getters: true }));
 };
 
+// ------------------------------------------------------------
 export const createMeal = async ({
   title,
   description,
@@ -90,4 +94,45 @@ export const createMeal = async ({
   }
 
   return createdMeal.toObject({ getters: true });
+};
+
+// ------------------------------------------------------------
+export const deleteMealById = async (mealId, userId) => {
+  let meal;
+  try {
+    meal = await Meal.findById(mealId).populate("author");
+  } catch (err) {
+    const error = new HttpError(
+      constants.COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID,
+      500
+    );
+    throw error;
+  }
+
+  if (!meal) {
+    const error = new HttpError(
+      constants.COULD_NOT_FIND_MATCH_BY_PROVIDED_MEAL_ID,
+      404
+    );
+    throw error;
+  }
+
+  if (meal.author.id.toString() !== userId) {
+    const error = new HttpError(constants.UNAUTHORIZED, 401);
+    throw error;
+  }
+
+  try {
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    await meal.deleteOne({ session: sess });
+    meal.author.meals.pull(meal);
+    await meal.author.save({ session: sess });
+    await sess.commitTransaction();
+  } catch (err) {
+    const error = new HttpError(constants.DELETE_MEAL_FAILED, 500);
+    throw error;
+  }
+
+  return { message: constants.DELETE_MEAL_SUCCESS };
 };
