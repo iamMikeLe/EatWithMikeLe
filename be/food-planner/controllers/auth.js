@@ -5,8 +5,10 @@ import jwt from "jsonwebtoken";
 import HttpError from "../models/http-error.js";
 import User from "../models/user.js";
 import {
+  GET_USER_FAILED,
   INVALID_INPUT,
   LOGIN_FAILED,
+  NO_MATCH_BY_USER_ID,
   SIGNUP_FAILED_TOKEN_GENERATION,
 } from "../utils/constants.js";
 
@@ -18,6 +20,27 @@ export const authMiddleware = expressjwt({
   secret,
 });
 
+// Context fn to pass User data to graphQL resolvers
+export const getContext = async ({ req }) => {
+  const authorId = req.auth.userId;
+  let user;
+  try {
+    user = await User.findById(authorId);
+  } catch (_err) {
+    const error = new HttpError(GET_USER_FAILED, 500);
+    throw error;
+  }
+
+  if (!user) {
+    const error = new HttpError(NO_MATCH_BY_USER_ID, 404);
+    throw error;
+  }
+  return {
+    user,
+  };
+};
+
+// TODO: Move to users controller
 export async function handleLogin(req, res, next) {
   const { email, password } = req.body;
 

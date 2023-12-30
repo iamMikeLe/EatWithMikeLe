@@ -60,31 +60,17 @@ export const getMealByUserId = async (userId) => {
 // ------------------------------------------------------------
 export const createMeal = async (
   { title, description, imageUrl, tags },
-  context
+  user
 ) => {
-  const author = context.auth.userId;
   const createdMeal = new Meal({
     title,
     description,
     imageUrl,
     tags,
-    author,
+    author: user.id,
     createdAt: new Date().toISOString(),
     modifiedAt: new Date().toISOString(),
   });
-
-  let user;
-  try {
-    user = await User.findById(author);
-  } catch (_err) {
-    const error = new HttpError(CREATING_MEAL_FAILED, 500);
-    throw error;
-  }
-
-  if (!user) {
-    const error = new HttpError(NO_MATCH_BY_USER_ID, 404);
-    throw error;
-  }
 
   try {
     const sess = await mongoose.startSession();
