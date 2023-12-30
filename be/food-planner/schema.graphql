@@ -72,5 +72,4 @@ input CreateMealInput {
   title: String!
   description: String!
   tags: [String]!
-  author: String!
 }

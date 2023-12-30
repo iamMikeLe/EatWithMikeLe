@@ -58,13 +58,11 @@ export const getMealByUserId = async (userId) => {
 };
 
 // ------------------------------------------------------------
-export const createMeal = async ({
-  title,
-  description,
-  imageUrl,
-  tags,
-  author,
-}) => {
+export const createMeal = async (
+  { title, description, imageUrl, tags },
+  context
+) => {
+  const author = context.auth.userId;
   const createdMeal = new Meal({
     title,
     description,

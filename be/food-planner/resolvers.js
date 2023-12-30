@@ -10,7 +10,7 @@ import {
   getUsers,
   getUsersById,
 } from "./controllers/user-controller.js";
-import { dummyPlace, dummyPlaces } from "./utils/dummyData.js";
+// import { dummyPlace, dummyPlaces } from "./utils/dummyData.js";
 
 export const resolvers = {
   Query: {
@@ -22,14 +22,17 @@ export const resolvers = {
 
     meals: () => getAllMeals(),
 
-    place: (_root, { id }) => dummyPlace,
+    // place: (_root, { id }) => dummyPlace,
 
-    places: () => dummyPlaces,
+    // places: () => dummyPlaces,
   },
 
   Mutation: {
     createUser: (_root, { input }) => createUser(input),
-    createMeal: (_root, { input }) => createMeal(input),
+    createMeal: (_root, { input }, context) => {
+      // TODO CONTINUE HERE:::::::::::::::
+      return createMeal(input, context);
+    },
     deleteMeal: (_root, { id }) => deleteMealById(id),
   },
 

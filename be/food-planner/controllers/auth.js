@@ -10,7 +10,7 @@ import {
   SIGNUP_FAILED_TOKEN_GENERATION,
 } from "../utils/constants.js";
 
-const secret = Buffer.from(process.env.JWT_SECRET, "base64");
+const secret = process.env.JWT_SECRET;
 
 export const authMiddleware = expressjwt({
   algorithms: ["HS256"],

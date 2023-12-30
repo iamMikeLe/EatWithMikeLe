@@ -10,7 +10,7 @@ lerna-debug.log*
 .env
 node_modules
 todo.txt
-.http
+*.http
 dist
 dist-ssr
 *.local
