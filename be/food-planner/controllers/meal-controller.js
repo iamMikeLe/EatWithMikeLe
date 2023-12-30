@@ -97,7 +97,10 @@ export const createMeal = async ({
 };
 
 // ------------------------------------------------------------
-export const deleteMealById = async (mealId, userId) => {
+export const deleteMealById = async (
+  mealId,
+  userId = "6589922d23d4d9220d665d1c"
+) => {
   let meal;
   try {
     meal = await Meal.findById(mealId).populate("author");
@@ -134,5 +137,5 @@ export const deleteMealById = async (mealId, userId) => {
     throw error;
   }
 
-  return { message: constants.DELETE_MEAL_SUCCESS };
+  return { deletedMealId: mealId, message: constants.DELETE_MEAL_SUCCESS };
 };

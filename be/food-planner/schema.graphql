@@ -9,6 +9,12 @@ type Query {
 
 type Mutation {
   createMeal(input: CreateMealInput!): Meal!
+  deleteMeal(id: ID!): DeleteMealResponse!
+}
+
+type DeleteMealResponse {
+  deletedMealId: String!
+  message: String!
 }
 
 type User {

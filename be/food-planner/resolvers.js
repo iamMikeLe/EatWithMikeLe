@@ -1,5 +1,6 @@
 import {
   createMeal,
+  deleteMealById,
   getAllMeals,
   getMealById,
   getMealByUserId,
@@ -23,9 +24,8 @@ export const resolvers = {
   },
 
   Mutation: {
-    createMeal: (_root, { input }) => {
-      return createMeal(input);
-    },
+    createMeal: (_root, { input }) => createMeal(input),
+    deleteMeal: (_root, { id }) => deleteMealById(id),
   },
 
   User: {
