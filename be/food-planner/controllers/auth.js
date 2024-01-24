@@ -24,10 +24,8 @@ export const authMiddleware = expressjwt({
 export const getContext = async ({ req }) => {
   if (!req || !req.auth) {
     // if no context return empty object
-    console.log("no context");
     return {};
   }
-  console.log("context exists");
   const authorId = req.auth.userId;
 
   let user;
@@ -43,7 +41,6 @@ export const getContext = async ({ req }) => {
     throw error;
   }
 
-  console.log("user", user);
   return {
     user,
   };

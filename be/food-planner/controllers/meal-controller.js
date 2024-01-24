@@ -62,7 +62,6 @@ export const createMeal = async (
   { title, description, imageUrl, tags },
   user
 ) => {
-  console.log("context user", user);
   const createdMeal = new Meal({
     title,
     description,
