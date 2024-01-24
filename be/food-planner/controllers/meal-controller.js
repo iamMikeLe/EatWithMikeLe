@@ -88,10 +88,7 @@ export const createMeal = async (
 };
 
 // ------------------------------------------------------------
-export const deleteMealById = async (
-  mealId,
-  userId = "6589922d23d4d9220d665d1c" // will be extracted from token in future
-) => {
+export const deleteMealById = async (mealId, user) => {
   let meal;
   try {
     meal = await Meal.findById(mealId).populate("author");
@@ -105,7 +102,7 @@ export const deleteMealById = async (
     return { message: error };
   }
 
-  if (meal.author.id.toString() !== userId) {
+  if (meal.author.id.toString() !== user.id) {
     const error = new HttpError(UNAUTHORIZED, 401);
     return { message: error };
   }

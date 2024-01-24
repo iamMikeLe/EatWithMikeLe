@@ -30,7 +30,7 @@ export const resolvers = {
   Mutation: {
     createUser: (_root, { input }) => createUser(input),
     createMeal: (_root, { input }, { user }) => createMeal(input, user),
-    deleteMeal: (_root, { id }) => deleteMealById(id),
+    deleteMeal: (_root, { id }, { user }) => deleteMealById(id, user),
   },
 
   User: {
