@@ -22,7 +22,14 @@ export const authMiddleware = expressjwt({
 
 // Context fn to pass User data to graphQL resolvers
 export const getContext = async ({ req }) => {
+  if (!req || !req.auth) {
+    // if no context return empty object
+    console.log("no context");
+    return {};
+  }
+  console.log("context exists");
   const authorId = req.auth.userId;
+
   let user;
   try {
     user = await User.findById(authorId);
@@ -35,6 +42,8 @@ export const getContext = async ({ req }) => {
     const error = new HttpError(NO_MATCH_BY_USER_ID, 404);
     throw error;
   }
+
+  console.log("user", user);
   return {
     user,
   };
