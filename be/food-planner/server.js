@@ -7,7 +7,8 @@ import mongoose from "mongoose";
 
 import express from "express";
 import { readFile } from "node:fs/promises";
-import { authMiddleware, getContext, handleLogin } from "./controllers/auth.js";
+import { authMiddleware, getContext } from "./controllers/auth.js";
+import { handleLogin } from "./controllers/user-controller.js";
 import HttpError from "./models/http-error.js";
 import { resolvers } from "./resolvers.js";
 import {
