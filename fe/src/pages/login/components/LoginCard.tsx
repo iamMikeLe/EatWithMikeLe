@@ -90,7 +90,6 @@ function LoginCard(): JSX.Element {
                 Sign up
               </Typography>
             </Typography>
-            L
           </Box>
         </Box>
       </Box>
