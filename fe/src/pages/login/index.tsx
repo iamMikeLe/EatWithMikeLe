@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 // react-router-dom components
 import { Link } from "react-router-dom";
 
@@ -11,9 +11,11 @@ import MuiLink from "@mui/material/Link";
 import Switch from "@mui/material/Switch";
 
 // @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
+import {
+  Facebook as FacebookIcon,
+  GitHub as GitHubIcon,
+  Google as GoogleIcon,
+} from "@mui/icons-material";
 
 // Material Dashboard 2 PRO React TS components
 import Box from "components/Box";
@@ -26,7 +28,10 @@ import DashboardNavbar from "layouts/DashboardNavbar";
 
 function Login(): JSX.Element {
   const [rememberMe, setRememberMe] = useState<boolean>(false);
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const handleSetRememberMe = useCallback(
+    () => setRememberMe((prev) => !prev),
+    []
+  );
 
   return (
     <DashboardLayout>
