@@ -24,6 +24,7 @@
     "ADD": "Přidat",
     "ADD_NEW_MEAL": "Přidat nový pokrm",
     "ADD_NEW_MEAL_DESCRIPTION": "Vyplňte následující informace o pokrmu",
-    "TAGS": "Categorie"
+    "TAGS": "Categorie",
+    "LOGIN_CUSTOM_TRANS": "Přihlásit"
   }
 }

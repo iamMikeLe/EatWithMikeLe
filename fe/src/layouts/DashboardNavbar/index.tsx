@@ -115,7 +115,7 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
                   {miniSidenav ? "menu_open" : "menu"}
                 </Icon>
               </IconButton>
-              <Link to="/authentication/sign-in/basic">
+              <Link to="/login">
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
                   <Icon sx={iconsStyle}>account_circle</Icon>
                 </IconButton>

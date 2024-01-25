@@ -51,17 +51,9 @@ export default function App() {
       />
 
       <Routes>
-        {routes.map((route) => {
-          if (route.type === "menuItem") {
-            return (
-              <Route
-                path={route.route}
-                element={route.component}
-                key={route.key}
-              />
-            );
-          }
-        })}
+        {routes.map((route) => (
+          <Route path={route.route} element={route.component} key={route.key} />
+        ))}
         <Route path="*" element={<Navigate to="/meals" />} />
       </Routes>
     </ThemeProvider>

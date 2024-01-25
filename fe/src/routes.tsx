@@ -5,6 +5,7 @@ import Meals from "pages/meals";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import Login from "pages/login";
 
 const routes = [
   { type: "title", title: "FOOD_SECTION", key: "title-docs" },
@@ -14,7 +15,6 @@ const routes = [
     key: "meal",
     route: "/meal/:id",
     component: <Meals />,
-    icon: <LunchDiningIcon fontSize="medium" />,
     noCollapse: true,
   },
   {
@@ -51,6 +51,14 @@ const routes = [
     route: "/add-meal",
     component: <AddMeal />,
     icon: <CalendarMonthIcon fontSize="medium" />,
+    noCollapse: true,
+  },
+  {
+    type: "noDisplay",
+    name: "LOGIN",
+    key: "login",
+    route: "/login",
+    component: <Login />,
     noCollapse: true,
   },
 ];
