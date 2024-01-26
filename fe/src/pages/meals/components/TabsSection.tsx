@@ -12,12 +12,14 @@ import Tabs from "@mui/material/Tabs";
 import breakpoints from "assets/theme/base/breakpoints";
 
 //Meals components
-import { useAppDispatch } from "store/hooks";
+import { selectIsAuthenticated } from "store/authSlice";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { fetchMealsAsync } from "../mealSlice";
 
 function TabsSection(): JSX.Element {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const [tabsOrientation, setTabsOrientation] = useState<
     "horizontal" | "vertical"
   >("horizontal");
@@ -58,10 +60,12 @@ function TabsSection(): JSX.Element {
         icon={<FastfoodIcon fontSize="small" sx={{ mt: -0.25 }} />}
       />
       <Tab
+        disabled={!isAuthenticated}
         label={t("MINE")}
         icon={<FaceIcon fontSize="small" sx={{ mt: -0.25 }} />}
       />
       <Tab
+        disabled={!isAuthenticated}
         label={t("FAVORITES")}
         icon={<FavoriteIcon fontSize="small" sx={{ mt: -0.25 }} />}
       />
