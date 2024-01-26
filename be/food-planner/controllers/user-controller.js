@@ -81,8 +81,9 @@ export async function handleLogin(req, res, next) {
   }
 
   res.json({
-    userId: existingUser.id,
+    id: existingUser.id,
     email: existingUser.email,
+    type: existingUser.type,
     token,
   });
 }
@@ -111,6 +112,7 @@ export const createUser = async ({
     favorites: [],
     learned: [],
     meals: [],
+    type: "user",
     createdAt: new Date().toISOString(),
     modifiedAt: new Date().toISOString(),
   });

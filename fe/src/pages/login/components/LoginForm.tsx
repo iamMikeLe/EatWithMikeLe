@@ -1,6 +1,7 @@
 // @mui material components
 import Switch from "@mui/material/Switch";
 // Material Dashboard 2 PRO React TS components
+import { loginAsync } from "API/login";
 import Box from "components/Box";
 import Button from "components/Button";
 import Input from "components/Input";
@@ -14,6 +15,7 @@ function LoginForm(): JSX.Element {
 
   const handleSubmit = () => {
     // continue here to make login post request
+    dispatch(loginAsync());
     console.log("handle submit with", email, password, remember);
   };
   return (

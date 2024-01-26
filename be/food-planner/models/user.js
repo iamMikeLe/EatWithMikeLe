@@ -10,6 +10,7 @@ const userSchema = new Schema({
   avatar: { type: String, required: true },
   favorites: [{ type: String }],
   learned: [{ type: String }],
+  type: { type: String, required: true },
   meals: [{ type: mongoose.Types.ObjectId, required: true, ref: "Meal" }],
   createdAt: { type: String, required: true },
   modifiedAt: { type: String, required: true },
