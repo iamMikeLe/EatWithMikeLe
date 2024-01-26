@@ -13,6 +13,8 @@ import SidenavCollapse from "../Sidenav/SidenavCollapse";
 
 // Material Dashboard 2 PRO React context
 import { useMaterialUIController } from "context";
+import { selectIsAuthenticated } from "store/authSlice";
+import { useAppSelector } from "store/hooks";
 
 // Declaring props types for Sidenav
 type Props = {
@@ -32,6 +34,7 @@ type Props = {
 };
 
 function ItemsByRoutes({ routes }: Props): JSX.Element {
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const [controller] = useMaterialUIController();
   const { transparentSidenav, whiteSidenav, darkMode } = controller;
   const location = useLocation();
@@ -58,16 +61,19 @@ function ItemsByRoutes({ routes }: Props): JSX.Element {
     textColor = "inherit";
   }
 
+  const handleRouteAuthCheck = (route: string) => {
+    if (route === "/meals") return route;
+    const checkedRouter = isAuthenticated ? route : "/login";
+    return checkedRouter;
+  };
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
   return (
     <>
       {routes.map(({ type, name, icon, title, key, route }: any) => {
-        if (type === "noDisplay") {
-          return null;
-        }
+        if (type === "noDisplay") return null;
         if (type === "menuItem") {
           return (
-            <NavLink to={route} key={key}>
+            <NavLink to={handleRouteAuthCheck(route)} key={key}>
               <SidenavCollapse
                 name={t(name)}
                 icon={icon}
