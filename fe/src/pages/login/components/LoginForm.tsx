@@ -6,9 +6,14 @@ import Box from "components/Box";
 import Button from "components/Button";
 import Input from "components/Input";
 import Typography from "components/Typography";
+import { useAppSelector } from "store/hooks";
+import { selectLoginFormValues } from "../loginSlice";
 
 function LoginForm(): JSX.Element {
+  // continue linking redux here
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const { email, password, remember } = useAppSelector(selectLoginFormValues);
+
   const handleSetRememberMe = useCallback(
     () => setRememberMe((prev) => !prev),
     []
@@ -23,7 +28,7 @@ function LoginForm(): JSX.Element {
         <Input type="password" label="Password" fullWidth />
       </Box>
       <Box display="flex" alignItems="center" ml={-1}>
-        <Switch checked={rememberMe} onChange={handleSetRememberMe} />
+        <Switch checked={remember} onChange={handleSetRememberMe} />
         <Typography
           variant="button"
           fontWeight="regular"
