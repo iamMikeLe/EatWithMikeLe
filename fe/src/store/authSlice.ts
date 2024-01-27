@@ -11,19 +11,12 @@ type UserData = {
 
 type AuthState = {
   authenticated: boolean;
-  user: UserData;
-};
-
-const defaultUser = {
-  type: null,
-  email: null,
-  token: null,
-  id: null,
+  user: UserData | null;
 };
 
 const initialState: AuthState = {
   authenticated: false,
-  user: defaultUser,
+  user: null,
 };
 
 export const authSlice = createSlice({
@@ -32,13 +25,13 @@ export const authSlice = createSlice({
   reducers: {
     setAuthenticated: (state, action: PayloadAction<boolean>) => {
       state.authenticated = action.payload;
-      state.user = defaultUser;
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginAsync.pending, (state) => {
-        state.user = defaultUser;
+        state.user = null;
         state.authenticated = false;
       })
       .addCase(
