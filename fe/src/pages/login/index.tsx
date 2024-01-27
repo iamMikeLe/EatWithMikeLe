@@ -1,15 +1,23 @@
 import DashboardLayout from "layouts/DashboardLayout";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { selectIsAuthenticated } from "store/authSlice";
+import { useAppSelector } from "store/hooks";
 // @mui material components
 import Grid from "@mui/material/Grid";
-
 // Material Dashboard 2 PRO React TS components
 import Box from "components/Box";
-
 import DashboardNavbar from "layouts/DashboardNavbar";
 import LoginCard from "./components/LoginCard";
 
 function Login(): JSX.Element {
+  const authenticated = useAppSelector(selectIsAuthenticated);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authenticated) navigate("/meals");
+  }, [authenticated, navigate]);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />

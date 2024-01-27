@@ -1,8 +1,14 @@
 import { GraphQLClient, gql } from "graphql-request";
 import { MealFormValue } from "types/meal-types";
+import { getToken } from "utils/helper";
 
 const apiUrl = import.meta.env.VITE_API_URL || "";
-const client = new GraphQLClient(apiUrl);
+
+const client = new GraphQLClient(apiUrl, {
+  headers: {
+    authorization: `Bearer ${getToken()}`,
+  },
+});
 
 export const fetchMeals = () => {
   return client.request(gql`
@@ -30,8 +36,6 @@ export const createMeal = ({ title, description, tags }: MealFormValue) => {
       title,
       description,
       tags,
-      author: "Mike",
-      authorId: "1",
       imageUrl: "https://picsum.photos/320/190",
     },
   });
