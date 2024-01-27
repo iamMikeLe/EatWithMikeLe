@@ -118,14 +118,6 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
                 </Icon>
               </IconButton>
 
-              {!authenticated && (
-                <Link to="/login">
-                  <IconButton sx={navbarIconButton} size="small" disableRipple>
-                    <Icon sx={iconsStyle}>account_circle</Icon>
-                  </IconButton>
-                </Link>
-              )}
-
               <IconButton
                 size="small"
                 disableRipple
@@ -135,6 +127,14 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
               >
                 <Icon sx={iconsStyle}>settings</Icon>
               </IconButton>
+
+              {!authenticated && (
+                <Link to="/login">
+                  <IconButton sx={navbarIconButton} size="small" disableRipple>
+                    <Icon sx={iconsStyle}>account_circle</Icon>
+                  </IconButton>
+                </Link>
+              )}
 
               {authenticated && (
                 <IconButton
