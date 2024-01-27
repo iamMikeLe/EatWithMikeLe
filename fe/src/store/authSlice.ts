@@ -35,7 +35,6 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginAsync.pending, (state) => {
-        console.log("pending");
         state.user = {
           type: null,
           email: null,
@@ -47,13 +46,12 @@ export const authSlice = createSlice({
       .addCase(
         loginAsync.fulfilled,
         (state, action: PayloadAction<UserData>) => {
-          console.log("fulfilled", action.payload);
           state.user = action.payload;
           state.authenticated = true;
         }
       )
       .addCase(loginAsync.rejected, (_state) => {
-        console.log("rejected");
+        console.log("add some error handling toast here");
       });
   },
 });

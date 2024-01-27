@@ -13,11 +13,6 @@ function LoginForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const { email, password, remember } = useAppSelector(selectLoginFormValues);
 
-  const handleSubmit = () => {
-    // continue here to make login post request
-    dispatch(loginAsync());
-    console.log("handle submit with", email, password, remember);
-  };
   return (
     <>
       <Box mb={2}>
@@ -65,7 +60,7 @@ function LoginForm(): JSX.Element {
           variant="gradient"
           color="info"
           fullWidth
-          onClick={handleSubmit}
+          onClick={() => dispatch(loginAsync({ email, password }))}
         >
           sign in
         </Button>
