@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // @material-ui core components
 import AppBar from "@mui/material/AppBar";
@@ -7,7 +7,7 @@ import Icon from "@mui/material/Icon";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 
-import { Badge, Box, Typography } from "components";
+import { Box, Typography } from "components";
 
 // Custom styles for DashboardNavbar
 import {
@@ -24,7 +24,8 @@ import { setMiniSidenav, useMaterialUIController } from "context";
 
 //store
 import { setShowSettingsModal } from "store/appSettingsSlice";
-import { useAppDispatch } from "store/hooks";
+import { selectIsAuthenticated, setAuthenticated } from "store/authSlice";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 
 // Declaring prop types for DashboardNavbar
 type Props = {
@@ -33,11 +34,12 @@ type Props = {
   isMini?: boolean;
 };
 
-//TODO optimize this component
 function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
   const { t } = useTranslation();
   const [controller, dispatchContext] = useMaterialUIController();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const authenticated = useAppSelector(selectIsAuthenticated);
   const { miniSidenav, transparentNavbar, darkMode } = controller;
   const route = useLocation().pathname.split("/").slice(1);
 
@@ -115,11 +117,14 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
                   {miniSidenav ? "menu_open" : "menu"}
                 </Icon>
               </IconButton>
-              <Link to="/login">
-                <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <Icon sx={iconsStyle}>account_circle</Icon>
-                </IconButton>
-              </Link>
+
+              {!authenticated && (
+                <Link to="/login">
+                  <IconButton sx={navbarIconButton} size="small" disableRipple>
+                    <Icon sx={iconsStyle}>account_circle</Icon>
+                  </IconButton>
+                </Link>
+              )}
 
               <IconButton
                 size="small"
@@ -130,16 +135,20 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
               >
                 <Icon sx={iconsStyle}>settings</Icon>
               </IconButton>
-              <IconButton
-                size="small"
-                color="inherit"
-                sx={navbarIconButton}
-                onClick={() => console.log("click")}
-              >
-                <Badge badgeContent={9} color="error" size="xs" circular>
-                  <Icon sx={iconsStyle}>notifications</Icon>
-                </Badge>
-              </IconButton>
+
+              {authenticated && (
+                <IconButton
+                  sx={navbarIconButton}
+                  size="small"
+                  disableRipple
+                  onClick={() => {
+                    dispatch(setAuthenticated(false));
+                    navigate("/login");
+                  }}
+                >
+                  <Icon sx={iconsStyle}>logout</Icon>
+                </IconButton>
+              )}
             </Box>
           </Box>
         )}
