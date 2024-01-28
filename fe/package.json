@@ -25,7 +25,6 @@
     "dropzone": "^6.0.0-beta.2",
     "formik": "2.2.9",
     "graphql": "^16.8.1",
-    "graphql-request": "^6.1.0",
     "i18next": "^23.7.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
