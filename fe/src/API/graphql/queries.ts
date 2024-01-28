@@ -39,15 +39,10 @@ export const fetchMeals = () => {
   });
 };
 
-export const createMeal = ({
-  title,
-  description,
-  tags,
-  image,
-}: MealFormValue & { image: File }) => {
+export const createMeal = ({ title, description, tags }: MealFormValue) => {
   const mutation = gql`
-    mutation CreateMeal($input: CreateMealInput!, $file: Upload!) {
-      meal: createMeal(input: $input, file: $file) {
+    mutation CreateMeal($input: CreateMealInput!) {
+      meal: createMeal(input: $input) {
         id
       }
     }
@@ -59,8 +54,8 @@ export const createMeal = ({
         title,
         description,
         tags,
+        imageUrl: "https://picsum.photos/320/190",
       },
-      file: image,
     },
   });
 };
