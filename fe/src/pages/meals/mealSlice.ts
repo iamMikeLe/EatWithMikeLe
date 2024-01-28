@@ -16,8 +16,8 @@ export const fetchMealsAsync = createAsyncThunk(
   "meals/fetchMeals",
   async () => {
     try {
-      const { meals } = (await fetchMeals()) as { meals: MealData[] };
-      return meals;
+      const { data } = await fetchMeals();
+      return data.meals;
     } catch (error: any) {
       console.log("handle error in future, toast or sth", error);
       throw error;
