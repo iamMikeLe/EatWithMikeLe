@@ -17,6 +17,8 @@ import { selectMealFormValues } from "./addMealSlice";
 import MealInfo from "./components/MealInfo";
 import MediaUpload from "./components/MediaUpload";
 
+import "./Uploader.css";
+
 function AddMeal(): JSX.Element {
   const navigate = useNavigate();
   const { t } = useTranslation();

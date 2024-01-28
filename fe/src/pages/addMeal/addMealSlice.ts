@@ -12,7 +12,7 @@ const initialState: AddMealFormState = {
     title: "",
     description: "",
     tags: [],
-    imageUrl: "https://picsum.photos/320/190",
+    imageUrl: null,
   },
 };
 

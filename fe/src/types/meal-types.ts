@@ -11,7 +11,7 @@ export type MealData = {
 };
 
 export type MealFormValue = {
-  imageUrl: string;
+  imageUrl: File | null;
   title: string;
   description: string;
   tags: string[] | null;

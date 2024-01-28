@@ -1,7 +1,7 @@
 import Badge from "components/Badge";
 import Box from "components/Box";
 import Button from "components/Button";
-import Dropzone from "components/Dropzone";
+
 import FormField from "components/FormField";
 import Input from "components/Input";
 import MealCard from "components/MealCard";
@@ -12,7 +12,6 @@ export {
   Badge,
   Box,
   Button,
-  Dropzone,
   FormField,
   Input,
   MealCard,

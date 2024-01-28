@@ -1,7 +1,7 @@
-import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Box, Dropzone, Typography } from "components";
+import { Box, Typography } from "components";
+import Uploader from "./Uploader";
 
 function Media(): JSX.Element {
   const { t } = useTranslation();
@@ -19,12 +19,7 @@ function Media(): JSX.Element {
             {t("MEAL_IMAGES")}
           </Typography>
         </Box>
-        {useMemo(
-          () => (
-            <Dropzone options={{ addRemoveLinks: true }} />
-          ),
-          []
-        )}
+        <Uploader />
       </Box>
     </Box>
   );
