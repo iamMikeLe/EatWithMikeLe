@@ -8,9 +8,20 @@ export type PreConvertImage = {
 
 function Uploader(): JSX.Element {
   const [images, setImages] = useState<PreConvertImage[]>([]);
+  const maxImages = 1;
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
+      // Calculate how many files we can take
+      const availableSlots = maxImages - images.length;
+
+      // If the user tries to upload more images than allowed, alert them and return early
+      if (acceptedFiles.length > availableSlots) {
+        console.log(`You can only upload ${maxImages} image.`);
+        return;
+      }
+
+      console.log("acceptedFiles", acceptedFiles);
       acceptedFiles.forEach((file) => {
         const reader = new FileReader();
 
