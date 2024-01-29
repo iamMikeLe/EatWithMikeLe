@@ -1,13 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-
-export type PreConvertImage = {
-  file: File;
-  src: string;
-};
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { selectUploadedImage, setMealForm } from "../addMealSlice";
 
 function Uploader(): JSX.Element {
-  const [image, setImage] = useState<PreConvertImage>();
+  const dispatch = useAppDispatch();
+  const image = useAppSelector(selectUploadedImage);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -15,7 +13,19 @@ function Uploader(): JSX.Element {
         const reader = new FileReader();
 
         reader.onloadend = () => {
-          setImage({ src: reader.result as string, file });
+          dispatch(
+            setMealForm({
+              key: "image",
+              value: {
+                src: reader.result as string,
+                fileInfo: {
+                  name: file.name,
+                  type: file.type,
+                  size: file.size,
+                },
+              },
+            })
+          );
         };
 
         reader.readAsDataURL(file);
@@ -25,7 +35,7 @@ function Uploader(): JSX.Element {
   );
 
   const handleRemove = () => {
-    setImage(undefined);
+    dispatch(setMealForm({ key: "image", value: undefined }));
   };
 
   const { getRootProps } = useDropzone({
