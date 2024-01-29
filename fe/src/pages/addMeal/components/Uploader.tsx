@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 export type PreConvertImage = {
@@ -7,70 +7,55 @@ export type PreConvertImage = {
 };
 
 function Uploader(): JSX.Element {
-  const [images, setImages] = useState<PreConvertImage[]>([]);
-  const maxImages = 1;
+  const [image, setImage] = useState<PreConvertImage>();
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      // Calculate how many files we can take
-      const availableSlots = maxImages - images.length;
-
-      // If the user tries to upload more images than allowed, alert them and return early
-      if (acceptedFiles.length > availableSlots) {
-        console.log(`You can only upload ${maxImages} image.`);
-        return;
-      }
-
-      console.log("acceptedFiles", acceptedFiles);
       acceptedFiles.forEach((file) => {
         const reader = new FileReader();
 
         reader.onloadend = () => {
-          setImages((prevImages) => [
-            ...prevImages,
-            { src: reader.result as string, file },
-          ]);
+          setImage({ src: reader.result as string, file });
         };
 
         reader.readAsDataURL(file);
       });
     },
-    [images]
+    [image]
   );
 
-  const handleRemove = (index: number) => {
-    const newImages = images.filter((_, i) => i !== index);
-    setImages(newImages);
+  const handleRemove = () => {
+    setImage(undefined);
   };
-
-  useEffect(() => {
-    return () => images.forEach((image) => URL.revokeObjectURL(image.src));
-  }, [images]);
 
   const { getRootProps } = useDropzone({
     accept: { "image/*": [] },
+    maxFiles: 1,
     onDrop,
   });
 
-  console.log("images", images);
+  console.log("image", image);
   return (
     <>
-      <div
-        {...getRootProps({ className: "dropzone" })}
-        className="custom-dropzone"
-      >
-        <p>Drag 'n' drop, or click to select.</p>
-      </div>
-      <aside className="custom-thumbsContainer">
-        {images.map((image, i) => (
-          <div key={i} className="custom-thumb">
+      {!image && (
+        <div
+          {...getRootProps({ className: "dropzone" })}
+          className="custom-dropzone"
+        >
+          <p>Choose a cover picture</p>
+        </div>
+      )}
+
+      {image && (
+        <aside className="custom-thumbsContainer">
+          <div className="custom-thumb">
             <div className="custom-thumbInner">
               <img src={image.src} className="custom-img-style" />
-              <button onClick={() => handleRemove(i)}>x</button>
+              <button onClick={handleRemove}>x</button>
             </div>
           </div>
-        ))}
-      </aside>
+        </aside>
+      )}
     </>
   );
 }
