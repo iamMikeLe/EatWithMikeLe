@@ -10,9 +10,15 @@ export type MealData = {
   modifiedAt: string | null;
 };
 
+export type PreConvertImage = {
+  file: File;
+  src: string;
+};
+
 export type MealFormValue = {
-  imageUrl: File | null;
+  imageUrl: string | null;
   title: string;
   description: string;
   tags: string[] | null;
+  image: PreConvertImage | undefined;
 };

@@ -13,6 +13,7 @@ const initialState: AddMealFormState = {
     description: "",
     tags: [],
     imageUrl: null,
+    image: undefined,
   },
 };
 
@@ -38,5 +39,8 @@ export const { setMealForm } = addMealFormSlice.actions;
 // Selectors
 export const selectMealFormValues = (state: RootState) =>
   state.addMealForm.mealFormValue;
+
+export const selectUploadedImage = (state: RootState) =>
+  state.addMealForm.mealFormValue.image;
 
 export default addMealFormSlice.reducer;

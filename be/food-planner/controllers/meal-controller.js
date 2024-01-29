@@ -1,4 +1,6 @@
+import fs from "fs";
 import mongoose from "mongoose";
+import path from "path";
 import HttpError from "../models/http-error.js";
 import Meal from "../models/meal.js";
 import User from "../models/user.js";
@@ -59,32 +61,49 @@ export const getMealByUserId = async (userId) => {
 
 // ------------------------------------------------------------
 export const createMeal = async (
-  { title, description, imageUrl, tags },
+  { title, description, imageUrl, tags, image },
   user
 ) => {
-  const createdMeal = new Meal({
-    title,
-    description,
-    imageUrl,
-    tags,
-    author: user.id,
-    createdAt: new Date().toISOString(),
-    modifiedAt: new Date().toISOString(),
-  });
-
   try {
-    const sess = await mongoose.startSession();
-    sess.startTransaction();
-    await createdMeal.save({ session: sess });
-    user.meals.push(createdMeal);
-    await user.save({ session: sess });
-    await sess.commitTransaction();
-  } catch (_err) {
-    const error = new HttpError(CREATING_MEAL_FAILED, 500);
-    throw error;
-  }
+    const { createReadStream, filename /*, fieldName, mimetype, encoding */ } =
+      await image;
 
-  return createdMeal.toObject({ getters: true });
+    const filePath = path.join(__dirname, "/uploads", `${user.id}-${filename}`);
+    const writeStream = fs.createWriteStream(filePath);
+
+    await new Promise((resolve, reject) => {
+      createReadStream()
+        .pipe(writeStream)
+        .on("finish", resolve)
+        .on("error", reject);
+    });
+
+    const createdMeal = new Meal({
+      title,
+      description,
+      imageUrl,
+      tags,
+      author: user.id,
+      createdAt: new Date().toISOString(),
+      modifiedAt: new Date().toISOString(),
+    });
+
+    try {
+      const sess = await mongoose.startSession();
+      sess.startTransaction();
+      await createdMeal.save({ session: sess });
+      user.meals.push(createdMeal);
+      await user.save({ session: sess });
+      await sess.commitTransaction();
+      return createdMeal.toObject({ getters: true });
+    } catch (_err) {
+      const error = new HttpError(CREATING_MEAL_FAILED, 500);
+      throw error;
+    }
+  } catch (error) {
+    console.log("Image upload failed", error);
+    return { success: false, message: error.message };
+  }
 };
 
 // ------------------------------------------------------------
