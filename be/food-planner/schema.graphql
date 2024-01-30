@@ -11,7 +11,6 @@ type Mutation {
   createUser(input: CreateUserInput!): User!
   createMeal(input: CreateMealInput!): Meal!
   deleteMeal(id: ID!): DeleteMealResponse!
-  uploadImage(img: [ImageUploadInput!]!): SuccessResult
 }
 
 type DeleteMealResponse {
@@ -68,21 +67,9 @@ input CreateUserInput {
   avatar: String!
 }
 
-scalar Upload
 input CreateMealInput {
   imageUrl: String!
   title: String!
   description: String!
   tags: [String]!
-  img: [ImageUploadInput!]!
-}
-
-input ImageUploadInput {
-  imgType: String!
-  file: Upload!
-}
-
-type SuccessResult {
-  success: Boolean!
-  message: String
 }

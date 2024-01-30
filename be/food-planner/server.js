@@ -3,7 +3,6 @@ import { expressMiddleware as apolloMiddleware } from "@apollo/server/express4";
 import bodyParser from "body-parser";
 import cors from "cors";
 import "dotenv/config";
-import { graphqlUploadExpress } from "graphql-upload-ts";
 import mongoose from "mongoose";
 
 import express from "express";
@@ -31,7 +30,6 @@ const apolloServer = new ApolloServer({ typeDefs, resolvers });
 await apolloServer.start();
 app.use(
   "/graphql",
-  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
   apolloMiddleware(apolloServer, { context: ({ req }) => getContext({ req }) })
 );
 
