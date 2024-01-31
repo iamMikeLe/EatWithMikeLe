@@ -3,6 +3,7 @@ type Query {
   users: [User!]
   meal(id: ID!): Meal
   meals: [Meal!]
+  s3URL: String!
   place(id: ID!): Place
   places: [Place!]
 }

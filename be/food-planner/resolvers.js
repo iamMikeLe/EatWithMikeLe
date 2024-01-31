@@ -5,6 +5,7 @@ import {
   getMealById,
   getMealByUserId,
 } from "./controllers/meal-controller.js";
+import { generateUploadUrl } from "./controllers/s3.js";
 import {
   createUser,
   getUsers,
@@ -21,6 +22,8 @@ export const resolvers = {
     meal: (_root, { id }) => getMealById(id),
 
     meals: () => getAllMeals(),
+
+    s3URL: (_root, _data, { user }) => generateUploadUrl(user),
 
     // place: (_root, { id }) => dummyPlace,
 

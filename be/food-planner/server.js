@@ -8,7 +8,6 @@ import mongoose from "mongoose";
 import express from "express";
 import { readFile } from "node:fs/promises";
 import { authMiddleware, getContext } from "./controllers/auth.js";
-import { generateUploadUrl } from "./controllers/s3.js";
 import { handleLogin } from "./controllers/user-controller.js";
 import HttpError from "./models/http-error.js";
 import { resolvers } from "./resolvers.js";
@@ -23,10 +22,6 @@ app.use(cors(), express.json(), bodyParser.json(), authMiddleware);
 
 // login route
 app.post("/login", handleLogin);
-app.get("/s3Url", async (_req, res) => {
-  const url = await generateUploadUrl();
-  res.send({ url });
-});
 
 const port = process.env.APP_PORT;
 const typeDefs = await readFile("./schema.graphql", "utf8");

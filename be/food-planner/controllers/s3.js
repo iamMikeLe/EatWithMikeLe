@@ -17,7 +17,9 @@ const s3 = new S3({
   },
 });
 
-export async function generateUploadUrl() {
+export async function generateUploadUrl(user) {
+  if (!user) throw new Error("Not authorized");
+
   const rawBytes = await randomBytes(16);
   const imageName = rawBytes.toString("hex");
 
