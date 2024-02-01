@@ -9,7 +9,14 @@ import Grid from "@mui/material/Grid";
 
 import { Box, Input, Typography } from "components";
 import { selectMealFormValues, setMealForm } from "../addMealSlice";
-import { top100Films } from "./DummyAutocomplete";
+
+const dummyTags = [
+  { name: "universal", id: 1 },
+  { name: "breakfast", id: 2 },
+  { name: "lunch", id: 3 },
+  { name: "dinner", id: 4 },
+  { name: "desert", id: 5 },
+];
 
 function ProductInfo(): JSX.Element {
   const { t } = useTranslation();
@@ -38,7 +45,7 @@ function ProductInfo(): JSX.Element {
               <Autocomplete
                 multiple
                 id="tags-filled"
-                options={top100Films.map((option) => option.title)}
+                options={dummyTags.map((option) => option.name)}
                 renderTags={(value: readonly string[], getTagProps) =>
                   value.map((option: string, index: number) => (
                     <Chip

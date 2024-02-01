@@ -22,7 +22,7 @@ import {
 import MealInfo from "./components/MealInfo";
 
 import axios from "axios";
-import "./Uploader.css";
+import "./AddMeal.css";
 
 function AddMeal(): JSX.Element {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
