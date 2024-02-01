@@ -42,6 +42,8 @@ function MealCard({ image, title, description }: Props): JSX.Element {
             boxShadow: ({ boxShadows: { md } }) => md,
             objectFit: "cover",
             objectPosition: "center",
+            height: 190,
+            width: 320,
           }}
         />
       </Box>
