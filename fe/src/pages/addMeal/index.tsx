@@ -24,42 +24,39 @@ import MealInfo from "./components/MealInfo";
 import axios from "axios";
 import "./AddMeal.css";
 
+interface ImageInfo {
+  src: string;
+  fileInfo: {
+    name: string;
+  };
+}
+
 function AddMeal(): JSX.Element {
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [addMealLoading, setAddMealLoading] = useState(false);
-
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [addMealLoading, setAddMealLoading] = useState<boolean>(false);
   const mealForm = useAppSelector(selectMealFormValues);
   const image = useAppSelector(selectUploadedImage);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      acceptedFiles.forEach((file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          // need optimization so that we dont need this part
-          dispatch(
-            setMealForm({
-              key: "image",
-              value: {
-                src: reader.result as string,
-                fileInfo: {
-                  name: file.name,
-                  type: file.type,
-                  size: file.size,
-                },
-              },
-            })
-          );
-          setUploadedFile(file);
+      const file = acceptedFiles[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageInfo: ImageInfo = {
+          src: reader.result as string,
+          fileInfo: {
+            name: file.name,
+          },
         };
-
-        reader.readAsDataURL(file);
-      });
+        dispatch(setMealForm({ key: "image", value: imageInfo }));
+        setUploadedFile(file);
+      };
+      reader.readAsDataURL(file);
     },
-    [image]
+    [dispatch]
   );
 
   const createMealAsync = async () => {
