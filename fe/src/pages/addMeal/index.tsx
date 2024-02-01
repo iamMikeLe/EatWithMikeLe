@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -9,35 +10,95 @@ import Grid from "@mui/material/Grid";
 import { Box, Button, Typography } from "components";
 import DashboardLayout from "layouts/DashboardLayout";
 import DashboardNavbar from "layouts/DashboardNavbar";
-import { useAppSelector } from "store/hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 
 // page components
-import { createMeal } from "API/graphql/queries";
-import { selectMealFormValues } from "./addMealSlice";
+import { createMeal, fetchS3URL } from "API/graphql/queries";
+import {
+  selectMealFormValues,
+  selectUploadedImage,
+  setMealForm,
+} from "./addMealSlice";
 import MealInfo from "./components/MealInfo";
-import MediaUpload from "./components/MediaUpload";
 
+import axios from "axios";
 import "./Uploader.css";
 
 function AddMeal(): JSX.Element {
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [addMealLoading, setAddMealLoading] = useState(false);
+
   const mealForm = useAppSelector(selectMealFormValues);
+  const image = useAppSelector(selectUploadedImage);
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      acceptedFiles.forEach((file) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          // need optimization so that we dont need this part
+          dispatch(
+            setMealForm({
+              key: "image",
+              value: {
+                src: reader.result as string,
+                fileInfo: {
+                  name: file.name,
+                  type: file.type,
+                  size: file.size,
+                },
+              },
+            })
+          );
+          setUploadedFile(file);
+        };
+
+        reader.readAsDataURL(file);
+      });
+    },
+    [image]
+  );
 
   const createMealAsync = async () => {
     // TODO: add validation
     setAddMealLoading(true);
+
     try {
-      const createdMeal = await createMeal(mealForm);
+      // fetch s3 url
+      const s3Url = await fetchS3URL();
+      const uploadUrl = s3Url.data.s3URL;
+      const imageUrl = uploadUrl.split("?")[0];
+
+      // Upload file to s3Url using Axios
+      await axios.put(uploadUrl, uploadedFile, {
+        headers: {
+          "Content-Type": uploadedFile?.type,
+        },
+      });
+
+      // create meal
+      const createdMeal = await createMeal({ ...mealForm, imageUrl });
       setAddMealLoading(false);
-      const mealId = (createdMeal as any).meal.id;
+      const mealId = (createdMeal as any).data.meal.id;
       navigate(`/meal/${mealId}`);
     } catch (error) {
       setAddMealLoading(false);
       console.log("need error toest handler", error);
     }
   };
+
+  const handleRemove = () => {
+    dispatch(setMealForm({ key: "image", value: undefined }));
+  };
+
+  const { getRootProps } = useDropzone({
+    accept: { "image/*": [] },
+    maxFiles: 1,
+    onDrop,
+  });
 
   return (
     <DashboardLayout>
@@ -59,7 +120,49 @@ function AddMeal(): JSX.Element {
               <Box p={2}>
                 <Box>
                   <MealInfo />
-                  <MediaUpload />
+                  <Box>
+                    <Typography variant="h5"> {t("MEAL_UPLOAD")}</Typography>
+                    <Box mt={3}>
+                      <Box
+                        mb={1}
+                        ml={0.5}
+                        lineHeight={0}
+                        display="inline-block"
+                      >
+                        <Typography
+                          component="label"
+                          variant="button"
+                          fontWeight="regular"
+                          color="text"
+                        >
+                          {t("MEAL_IMAGES")}
+                        </Typography>
+                      </Box>
+
+                      {!image && (
+                        <div
+                          {...getRootProps({ className: "dropzone" })}
+                          className="custom-dropzone"
+                        >
+                          <p>Choose a cover picture</p>
+                        </div>
+                      )}
+
+                      {image && (
+                        <aside className="custom-thumbsContainer">
+                          <div className="custom-thumb">
+                            <div className="custom-thumbInner">
+                              <img
+                                src={image.src}
+                                className="custom-img-style"
+                              />
+                              <button onClick={handleRemove}>x</button>
+                            </div>
+                          </div>
+                        </aside>
+                      )}
+                    </Box>
+                  </Box>
                   <Box
                     mt={3}
                     width="100%"

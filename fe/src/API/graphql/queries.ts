@@ -39,12 +39,23 @@ export const fetchMeals = () => {
   });
 };
 
+export const fetchS3URL = () => {
+  return client.query({
+    query: gql`
+      query {
+        s3URL
+      }
+    `,
+  });
+};
+
 export const createMeal = ({
   title,
   description,
   tags,
   imageUrl,
 }: MealFormValue) => {
+  console.log("imageUrl", imageUrl);
   const mutation = gql`
     mutation CreateMeal($input: CreateMealInput!) {
       meal: createMeal(input: $input) {
@@ -52,7 +63,6 @@ export const createMeal = ({
       }
     }
   `;
-  console.log("imageUrl", imageUrl);
   return client.mutate({
     mutation,
     variables: {

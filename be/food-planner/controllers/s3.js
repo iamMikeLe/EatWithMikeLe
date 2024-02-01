@@ -10,6 +10,7 @@ const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
 const s3 = new S3({
+  signatureVersion: "v4",
   region,
   credentials: {
     accessKeyId,
@@ -26,7 +27,6 @@ export async function generateUploadUrl(user) {
   const params = {
     Bucket: bucketName,
     Key: imageName,
-    Expires: new Date(Date.now() + 60 * 1000),
   };
 
   const uploadURL = await getSignedUrl(s3, new PutObjectCommand(params));
