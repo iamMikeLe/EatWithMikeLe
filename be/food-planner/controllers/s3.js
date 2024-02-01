@@ -16,6 +16,7 @@ const s3 = new S3({
     accessKeyId,
     secretAccessKey,
   },
+  expiresIn: 60,
 });
 
 export async function generateUploadUrl(user) {
