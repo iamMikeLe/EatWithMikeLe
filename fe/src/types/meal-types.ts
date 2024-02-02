@@ -16,9 +16,7 @@ export type PreConvertImage = {
 };
 
 export type MealFormValue = {
-  imageUrl: string | null;
   title: string;
   description: string;
   tags: string[] | null;
-  image: PreConvertImage | undefined;
 };

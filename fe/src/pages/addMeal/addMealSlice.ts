@@ -12,8 +12,6 @@ const initialState: AddMealFormState = {
     title: "",
     description: "",
     tags: [],
-    imageUrl: null,
-    image: undefined,
   },
 };
 
@@ -30,23 +28,14 @@ export const addMealFormSlice = createSlice({
     ) => {
       state.mealFormValue[action.payload.key] = action.payload.value;
     },
-    setImageUrl: (state, action: PayloadAction<string>) => {
-      state.mealFormValue.imageUrl = action.payload;
-    },
   },
 });
 
 // Actions
-export const { setMealForm, setImageUrl } = addMealFormSlice.actions;
+export const { setMealForm } = addMealFormSlice.actions;
 
 // Selectors
 export const selectMealFormValues = (state: RootState) =>
   state.addMealForm.mealFormValue;
-
-export const selectImageUrl = (state: RootState) =>
-  state.addMealForm.mealFormValue.imageUrl;
-
-export const selectUploadedImage = (state: RootState) =>
-  state.addMealForm.mealFormValue.image;
 
 export default addMealFormSlice.reducer;
