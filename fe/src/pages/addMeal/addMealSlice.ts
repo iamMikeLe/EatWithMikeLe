@@ -12,6 +12,7 @@ const initialState: AddMealFormState = {
     title: "",
     description: "",
     tags: [],
+    imageUrl: null,
   },
 };
 

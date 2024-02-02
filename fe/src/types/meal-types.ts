@@ -19,4 +19,5 @@ export type MealFormValue = {
   title: string;
   description: string;
   tags: string[] | null;
+  imageUrl: string | null;
 };
