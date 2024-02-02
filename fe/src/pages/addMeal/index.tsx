@@ -14,44 +14,27 @@ import { useAppDispatch, useAppSelector } from "store/hooks";
 
 // page components
 import { createMeal, fetchS3URL } from "API/graphql/queries";
-import {
-  selectMealFormValues,
-  selectUploadedImage,
-  setMealForm,
-} from "./addMealSlice";
+import { selectMealFormValues } from "./addMealSlice";
 import MealInfo from "./components/MealInfo";
 
 import axios from "axios";
 import "./AddMeal.css";
-
-interface ImageInfo {
-  src: string;
-  fileInfo: {
-    name: string;
-  };
-}
 
 function AddMeal(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [uploadedFileSrc, setUploadedFileSrc] = useState<string | null>(null);
   const [addMealLoading, setAddMealLoading] = useState<boolean>(false);
   const mealForm = useAppSelector(selectMealFormValues);
-  const image = useAppSelector(selectUploadedImage);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
       const reader = new FileReader();
       reader.onloadend = () => {
-        const imageInfo: ImageInfo = {
-          src: reader.result as string,
-          fileInfo: {
-            name: file.name,
-          },
-        };
-        dispatch(setMealForm({ key: "image", value: imageInfo }));
+        setUploadedFileSrc(reader.result as string);
         setUploadedFile(file);
       };
       reader.readAsDataURL(file);
@@ -85,10 +68,6 @@ function AddMeal(): JSX.Element {
       setAddMealLoading(false);
       console.log("need error toest handler", error);
     }
-  };
-
-  const handleRemove = () => {
-    dispatch(setMealForm({ key: "image", value: undefined }));
   };
 
   const { getRootProps } = useDropzone({
@@ -136,24 +115,26 @@ function AddMeal(): JSX.Element {
                         </Typography>
                       </Box>
 
-                      {!image && (
+                      {!uploadedFileSrc && (
                         <div
                           {...getRootProps({ className: "dropzone" })}
                           className="custom-dropzone"
                         >
-                          <p>Choose a cover picture</p>
+                          <p> {t("CHOOSE_COVER_PIC")}</p>
                         </div>
                       )}
 
-                      {image && (
+                      {uploadedFileSrc && (
                         <aside className="custom-thumbsContainer">
                           <div className="custom-thumb">
                             <div className="custom-thumbInner">
                               <img
-                                src={image.src}
+                                src={uploadedFileSrc}
                                 className="custom-img-style"
                               />
-                              <button onClick={handleRemove}>x</button>
+                              <button onClick={() => setUploadedFileSrc(null)}>
+                                x
+                              </button>
                             </div>
                           </div>
                         </aside>
