@@ -55,7 +55,6 @@ export const createMeal = ({
   tags,
   imageUrl,
 }: MealFormValue) => {
-  console.log("imageUrl", imageUrl);
   const mutation = gql`
     mutation CreateMeal($input: CreateMealInput!) {
       meal: createMeal(input: $input) {
